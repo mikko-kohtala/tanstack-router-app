@@ -88,9 +88,16 @@ export function MoneyAnalysis() {
     },
   ];
 
+  const BudgetThresholdHigh = 90;
+  const BudgetThresholdMedium = 75;
+
   const getBudgetColor = (percentage: number) => {
-    if (percentage >= 90) return "text-red-600 bg-red-100";
-    if (percentage >= 75) return "text-yellow-600 bg-yellow-100";
+    if (percentage >= BudgetThresholdHigh) {
+      return "text-red-600 bg-red-100";
+    }
+    if (percentage >= BudgetThresholdMedium) {
+      return "text-yellow-600 bg-yellow-100";
+    }
     return "text-green-600 bg-green-100";
   };
 
@@ -171,13 +178,15 @@ export function MoneyAnalysis() {
                 </div>
                 <div className="h-2 w-full rounded-full bg-gray-200">
                   <div
-                    className={`h-2 rounded-full transition-all ${
-                      dept.percentage >= 90
-                        ? "bg-red-500"
-                        : dept.percentage >= 75
-                          ? "bg-yellow-500"
-                          : "bg-green-500"
-                    }`}
+                    className={`h-2 rounded-full transition-all ${(() => {
+                      if (dept.percentage >= BudgetThresholdHigh) {
+                        return "bg-red-500";
+                      }
+                      if (dept.percentage >= BudgetThresholdMedium) {
+                        return "bg-yellow-500";
+                      }
+                      return "bg-green-500";
+                    })()}`}
                     style={{ width: `${dept.percentage}%` }}
                   />
                 </div>
@@ -195,10 +204,10 @@ export function MoneyAnalysis() {
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
-            {recentTransactions.map((transaction, index) => (
+            {recentTransactions.map((transaction) => (
               <div
                 className="flex items-center justify-between rounded-lg p-3 hover:bg-gray-50"
-                key={index}
+                key={`${transaction.date}-${transaction.description}`}
               >
                 <div className="flex-1">
                   <p className="font-medium text-gray-900">

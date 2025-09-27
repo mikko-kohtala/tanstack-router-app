@@ -1,9 +1,9 @@
 import { createRootRoute, createRoute } from "@tanstack/react-router";
 import { AppModuleLayout } from "./components/app-module-layout";
 import { CompanyDepartmentSelection } from "./components/company-department-selection";
-import { HRConfigurator } from "./components/modules/hr-configurator";
+import { HrConfigurator } from "./components/modules/hr-configurator";
 import { MoneyAnalysis } from "./components/modules/money-analysis";
-import { POCCreator } from "./components/modules/poc-creator";
+import { PocCreator } from "./components/modules/poc-creator";
 import { RootLayout } from "./components/root-layout";
 import { companyDepartmentLoader, moduleLoader, rootLoader } from "./loaders";
 
@@ -35,7 +35,7 @@ const hrConfiguratorRoute = createRoute({
   loader: moduleLoader,
   component: () => (
     <AppModuleLayout moduleName="HR Configurator">
-      <HRConfigurator />
+      <HrConfigurator />
     </AppModuleLayout>
   ),
 });
@@ -47,7 +47,7 @@ const pocCreatorRoute = createRoute({
   loader: moduleLoader,
   component: () => (
     <AppModuleLayout moduleName="POC Creator">
-      <POCCreator />
+      <PocCreator />
     </AppModuleLayout>
   ),
 });

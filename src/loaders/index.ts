@@ -17,10 +17,13 @@ export const validCompanies = {
 // Helper function to simulate async data fetching
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// Constants
+const LOADER_INIT_DELAY_MS = 100;
+
 // Root loader - runs on every route
 export const rootLoader = async () => {
   console.log("🔄 Root loader: Initializing application...");
-  await sleep(100); // Small delay to simulate async initialization
+  await sleep(LOADER_INIT_DELAY_MS); // Small delay to simulate async initialization
 
   return {
     appName: "Company Analysis Platform",
@@ -30,7 +33,7 @@ export const rootLoader = async () => {
 };
 
 // Company/Department validation loader
-export const companyDepartmentLoader = async ({
+export const companyDepartmentLoader = ({
   params,
 }: {
   params: { companyId: string; departmentId: string };
@@ -71,13 +74,13 @@ export const companyDepartmentLoader = async ({
 };
 
 // Module loaders - validate access to specific modules
-export const moduleLoader = async ({
+export const moduleLoader = ({
   params,
 }: {
   params: { companyId: string; departmentId: string };
 }) => {
   // First validate company/department
-  const validationResult = await companyDepartmentLoader({ params });
+  const validationResult = companyDepartmentLoader({ params });
 
   // Could add module-specific permissions or data loading here
   console.log(

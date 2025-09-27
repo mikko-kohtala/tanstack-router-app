@@ -15,7 +15,7 @@ import {
   CardTitle,
 } from "../ui/card";
 
-export function POCCreator() {
+export function PocCreator() {
   const projects = [
     {
       name: "AI Chatbot Integration",

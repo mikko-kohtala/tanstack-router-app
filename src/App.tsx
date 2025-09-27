@@ -4,7 +4,14 @@ function App() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="space-y-6 text-center">
-        <img alt="logo" className="mx-auto h-40 animate-spin-slow" src={logo} />
+        {/* biome-ignore lint/performance/noImgElement: Not using Next.js */}
+        <img
+          alt="logo"
+          className="mx-auto h-40 animate-spin-slow"
+          height="160"
+          src={logo}
+          width="160"
+        />
         <p className="text-lg text-muted-foreground">
           Edit{" "}
           <code className="rounded bg-muted px-1 py-0.5 font-mono">

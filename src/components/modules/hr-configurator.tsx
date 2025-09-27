@@ -15,7 +15,7 @@ import {
   CardTitle,
 } from "../ui/card";
 
-export function HRConfigurator() {
+export function HrConfigurator() {
   const stats = [
     { label: "Total Employees", value: "1,234", icon: Users, change: "+12%" },
     { label: "Open Positions", value: "47", icon: Award, change: "+8%" },
@@ -103,8 +103,8 @@ export function HRConfigurator() {
               "Added 5 new employees to Sales team",
               "Modified performance review schedule",
               "Updated remote work guidelines",
-            ].map((activity, index) => (
-              <div className="flex items-start space-x-3" key={index}>
+            ].map((activity) => (
+              <div className="flex items-start space-x-3" key={activity}>
                 <div className="mt-1.5 h-2 w-2 rounded-full bg-blue-600" />
                 <p className="text-gray-600 text-sm">{activity}</p>
               </div>

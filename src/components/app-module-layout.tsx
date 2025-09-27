@@ -4,10 +4,10 @@ import type { ReactNode } from "react";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
 
-interface AppModuleLayoutProps {
+type AppModuleLayoutProps = {
   moduleName: string;
   children: ReactNode;
-}
+};
 
 export function AppModuleLayout({
   moduleName,
@@ -25,7 +25,11 @@ export function AppModuleLayout({
 
   // Different sidebar items based on module
   const getSidebarItems = () => {
-    const basePath = currentPath.split("/").slice(0, 4).join("/");
+    const ModulePathSegments = 4;
+    const basePath = currentPath
+      .split("/")
+      .slice(0, ModulePathSegments)
+      .join("/");
 
     switch (moduleName) {
       case "HR Configurator":

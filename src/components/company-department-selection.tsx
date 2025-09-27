@@ -113,40 +113,40 @@ export function CompanyDepartmentSelection() {
   if (!hasParams) {
     // Landing page for root route - show company/department selector
     return (
-      <div className="min-h-[calc(100vh-4rem)] px-4 py-6">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-6 text-center">
-            <h2 className="mb-2 font-bold text-2xl text-gray-900">
+      <div className="min-h-[calc(100vh-4rem)] px-4 py-3">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-4 text-center">
+            <h2 className="mb-1 font-bold text-3xl text-gray-900">
               Company Analysis Platform
             </h2>
-            <p className="text-base text-gray-600">
+            <p className="text-gray-600 text-lg">
               Select your company and department to access analysis tools
             </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2">
             {exampleCompanies.map((company) => (
               <Card className="overflow-hidden" key={company.id}>
-                <CardHeader className="px-4 py-2.5">
+                <CardHeader className="px-3 py-2">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <span className="text-2xl">{company.icon}</span>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xl">{company.icon}</span>
                       <div>
-                        <CardTitle className="text-lg leading-tight">
+                        <CardTitle className="text-xl leading-tight">
                           {company.name}
                         </CardTitle>
-                        <CardDescription className="text-sm">
+                        <CardDescription className="text-base">
                           {company.description}
                         </CardDescription>
                       </div>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="px-4 pt-2 pb-2.5">
-                  <h4 className="mb-1.5 font-semibold text-gray-600 text-xs uppercase tracking-wider">
+                <CardContent className="px-3 pt-1.5 pb-2">
+                  <h4 className="mb-1 font-semibold text-gray-600 text-sm uppercase tracking-wider">
                     Departments
                   </h4>
-                  <div className="grid grid-cols-1 gap-1.5 md:grid-cols-2">
+                  <div className="grid grid-cols-1 gap-1 md:grid-cols-2">
                     {company.departments.map((dept) => (
                       <Link
                         key={dept.id}
@@ -157,20 +157,20 @@ export function CompanyDepartmentSelection() {
                         to="/$companyId/$departmentId"
                       >
                         <Card className="h-full cursor-pointer border-gray-200 transition-all hover:scale-[1.01] hover:shadow-sm">
-                          <CardContent className="px-3 py-2">
+                          <CardContent className="px-2.5 py-1.5">
                             <div className="flex items-center justify-between">
                               <div className="flex-1">
                                 <div className="flex items-center space-x-1.5">
-                                  <Briefcase className="h-3.5 w-3.5 text-blue-600" />
-                                  <h3 className="font-medium text-gray-900 text-sm">
+                                  <Briefcase className="h-4 w-4 text-blue-600" />
+                                  <h3 className="font-medium text-base text-gray-900">
                                     {dept.name}
                                   </h3>
                                 </div>
-                                <p className="mt-0.5 text-gray-600 text-xs leading-tight">
+                                <p className="mt-0.5 text-gray-600 text-sm leading-tight">
                                   {dept.description}
                                 </p>
                               </div>
-                              <ArrowRight className="ml-2 h-3.5 w-3.5 flex-shrink-0 text-gray-400" />
+                              <ArrowRight className="ml-2 h-4 w-4 flex-shrink-0 text-gray-400" />
                             </div>
                           </CardContent>
                         </Card>
@@ -182,18 +182,18 @@ export function CompanyDepartmentSelection() {
             ))}
           </div>
 
-          <div className="mt-6 rounded-lg bg-gray-50 p-4">
-            <h3 className="mb-1.5 font-medium text-gray-900 text-sm">
+          <div className="mt-4 rounded-lg bg-gray-50 p-3">
+            <h3 className="mb-1 font-medium text-base text-gray-900">
               Custom URL Access
             </h3>
-            <p className="mb-1.5 text-gray-600 text-xs">
+            <p className="mb-1 text-gray-600 text-sm">
               You can also directly navigate to any company/department
               combination:
             </p>
-            <code className="block rounded border border-gray-200 bg-white px-2.5 py-1 text-xs">
+            <code className="block rounded border border-gray-200 bg-white px-2 py-0.5 text-sm">
               /{"{company-id}"}/{"{department-id}"}
             </code>
-            <p className="mt-1 text-gray-500 text-xs">
+            <p className="mt-0.5 text-gray-500 text-sm">
               Example: /acme-corp/engineering
             </p>
           </div>
@@ -209,50 +209,54 @@ export function CompanyDepartmentSelection() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mb-12 text-center">
-        <div className="mb-4 flex items-center justify-center space-x-3">
-          <Building2 className="h-8 w-8 text-gray-600" />
+    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mb-6 text-center">
+        <div className="mb-2 flex items-center justify-center space-x-3">
+          <Building2 className="h-7 w-7 text-gray-600" />
           <div className="text-left">
-            <h2 className="font-bold text-2xl text-gray-900">
+            <h2 className="font-bold text-3xl text-gray-900">
               {currentCompany?.name || companyId}
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-lg">
               {currentDepartment?.name || departmentId} Department
             </p>
           </div>
         </div>
-        <p className="text-gray-600 text-lg">
+        <p className="text-gray-600 text-xl">
           Select an application module to get started
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {modules.map((module) => {
           const Icon = module.icon;
           return (
             <Card className="transition-shadow hover:shadow-lg" key={module.id}>
-              <CardHeader>
+              <CardHeader className="pb-3">
                 <div
-                  className={`h-12 w-12 ${module.bgColor} mb-4 flex items-center justify-center rounded-lg`}
+                  className={`h-10 w-10 ${module.bgColor} mb-3 flex items-center justify-center rounded-lg`}
                 >
-                  <Icon className={`h-6 w-6 ${module.color}`} />
+                  <Icon className={`h-5 w-5 ${module.color}`} />
                 </div>
-                <CardTitle>{module.name}</CardTitle>
-                <CardDescription>{module.description}</CardDescription>
+                <CardTitle className="text-xl">{module.name}</CardTitle>
+                <CardDescription className="text-base">
+                  {module.description}
+                </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="pt-0">
                 <Link
                   params={{ companyId, departmentId }}
-                  to={
-                    module.id === "hr-configurator"
-                      ? "/$companyId/$departmentId/hr-configurator"
-                      : module.id === "poc-creator"
-                        ? "/$companyId/$departmentId/poc-creator"
-                        : "/$companyId/$departmentId/money-analysis"
-                  }
+                  to={(() => {
+                    if (module.id === "hr-configurator") {
+                      return "/$companyId/$departmentId/hr-configurator";
+                    }
+                    if (module.id === "poc-creator") {
+                      return "/$companyId/$departmentId/poc-creator";
+                    }
+                    return "/$companyId/$departmentId/money-analysis";
+                  })()}
                 >
-                  <Button className="w-full">
+                  <Button className="h-9 w-full text-base">
                     Open {module.name}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -263,9 +267,9 @@ export function CompanyDepartmentSelection() {
         })}
       </div>
 
-      <div className="mt-8 flex justify-center">
+      <div className="mt-6 flex justify-center">
         <Link to="/">
-          <Button variant="outline">
+          <Button className="text-base" variant="outline">
             <Building2 className="mr-2 h-4 w-4" />
             Choose Different Company/Department
           </Button>
