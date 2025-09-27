@@ -7,16 +7,16 @@ import {
   PieChart,
   TrendingUp,
 } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../../../components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "../../../../components/ui/card";
 
-export function MoneyAnalysis() {
+export default function MoneyDashboard() {
   const financialMetrics = [
     {
       label: "Total Revenue",

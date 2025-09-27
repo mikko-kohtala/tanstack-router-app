@@ -6,16 +6,16 @@ import {
   GitBranch,
   Rocket,
 } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../../../components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "../../../../components/ui/card";
 
-export function PocCreator() {
+export default function PocDashboard() {
   const projects = [
     {
       name: "AI Chatbot Integration",

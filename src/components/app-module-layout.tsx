@@ -1,8 +1,9 @@
 import { Link, useLocation, useRouterState } from "@tanstack/react-router";
-import { BarChart, ChevronLeft, FileText, Home, Settings } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
+import { moduleBasePathFrom, moduleNavItems } from "../app/nav";
 
 type AppModuleLayoutProps = {
   moduleName: string;
@@ -23,50 +24,8 @@ export function AppModuleLayout({
 
   const currentPath = location.pathname;
 
-  // Different sidebar items based on module
-  const getSidebarItems = () => {
-    const ModulePathSegments = 4;
-    const basePath = currentPath
-      .split("/")
-      .slice(0, ModulePathSegments)
-      .join("/");
-
-    switch (moduleName) {
-      case "HR Configurator":
-        return [
-          { name: "Dashboard", icon: Home, href: basePath },
-          {
-            name: "Employee Settings",
-            icon: Settings,
-            href: `${basePath}/settings`,
-          },
-          { name: "Policies", icon: FileText, href: `${basePath}/policies` },
-          { name: "Reports", icon: BarChart, href: `${basePath}/reports` },
-        ];
-      case "POC Creator":
-        return [
-          { name: "Dashboard", icon: Home, href: basePath },
-          { name: "Projects", icon: FileText, href: `${basePath}/projects` },
-          { name: "Templates", icon: Settings, href: `${basePath}/templates` },
-          { name: "Analytics", icon: BarChart, href: `${basePath}/analytics` },
-        ];
-      case "Money Analysis":
-        return [
-          { name: "Dashboard", icon: Home, href: basePath },
-          {
-            name: "Transactions",
-            icon: FileText,
-            href: `${basePath}/transactions`,
-          },
-          { name: "Budgets", icon: Settings, href: `${basePath}/budgets` },
-          { name: "Reports", icon: BarChart, href: `${basePath}/reports` },
-        ];
-      default:
-        return [];
-    }
-  };
-
-  const sidebarItems = getSidebarItems();
+  const basePath = moduleBasePathFrom(currentPath);
+  const sidebarItems = moduleNavItems(moduleName, basePath);
 
   return (
     <div className="flex h-[calc(100vh-4rem)]">

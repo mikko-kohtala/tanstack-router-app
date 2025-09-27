@@ -30,10 +30,10 @@ test_route() {
 # Test routes
 echo ""
 test_route "http://localhost:5174/" "Welcome" "Root route (/)"
-test_route "http://localhost:5174/acme-corp/engineering" "modules" "Company/Department route"
-test_route "http://localhost:5174/acme-corp/engineering/hr-configurator" "HR" "HR Configurator"
-test_route "http://localhost:5174/acme-corp/engineering/poc-creator" "POC" "POC Creator"
-test_route "http://localhost:5174/acme-corp/engineering/money-analysis" "Money" "Money Analysis"
+test_route "http://localhost:5174/techcorp/engineering" "modules" "Company/Department route"
+test_route "http://localhost:5174/techcorp/engineering/hr-configurator" "HR" "HR Configurator"
+test_route "http://localhost:5174/techcorp/engineering/poc-creator" "POC" "POC Creator"
+test_route "http://localhost:5174/techcorp/engineering/money-analysis" "Money" "Money Analysis"
 
 echo ""
 echo "============================================="

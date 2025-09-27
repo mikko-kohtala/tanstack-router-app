@@ -15,7 +15,7 @@ const { chromium } = require("@playwright/test");
   console.log("Welcome text:", welcomeText);
 
   console.log("\nTesting company/department route...");
-  await page.goto("http://localhost:5174/acme-corp/engineering");
+  await page.goto("http://localhost:5174/techcorp/engineering");
   await page.waitForLoadState("networkidle");
 
   const companyInfo = await page.textContent('span:has-text("Company:")');
@@ -27,23 +27,21 @@ const { chromium } = require("@playwright/test");
   console.log("Available modules:", modules);
 
   console.log("\nTesting HR Configurator...");
-  await page.goto(
-    "http://localhost:5174/acme-corp/engineering/hr-configurator"
-  );
+  await page.goto("http://localhost:5174/techcorp/engineering/hr-configurator");
   await page.waitForLoadState("networkidle");
 
   const hrTitle = await page.textContent("h2");
   console.log("HR Configurator title:", hrTitle);
 
   console.log("\nTesting POC Creator...");
-  await page.goto("http://localhost:5174/acme-corp/engineering/poc-creator");
+  await page.goto("http://localhost:5174/techcorp/engineering/poc-creator");
   await page.waitForLoadState("networkidle");
 
   const pocTitle = await page.textContent("h2");
   console.log("POC Creator title:", pocTitle);
 
   console.log("\nTesting Money Analysis...");
-  await page.goto("http://localhost:5174/acme-corp/engineering/money-analysis");
+  await page.goto("http://localhost:5174/techcorp/engineering/money-analysis");
   await page.waitForLoadState("networkidle");
 
   const moneyTitle = await page.textContent("h2");

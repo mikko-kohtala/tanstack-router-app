@@ -1,4 +1,8 @@
-import { isValidCompanyDepartment, getCompany, getDepartment } from "../data/companies";
+import {
+  isValidCompanyDepartment,
+  getCompany,
+  getDepartment,
+} from "../data/companies";
 
 // Helper function to simulate async data fetching
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -41,7 +45,7 @@ export const companyDepartmentLoader = ({
     }
 
     throw new Error(
-      `Department "${departmentId}" not found in ${company.name}. Valid departments are: ${company.departments.map(d => d.id).join(", ")}`
+      `Department "${departmentId}" not found in ${company.name}. Valid departments are: ${company.departments.map((d) => d.id).join(", ")}`
     );
   }
 

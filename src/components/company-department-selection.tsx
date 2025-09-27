@@ -20,7 +20,12 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { companies, companyCategories, getCompany, getDepartment } from "../data/companies";
+import {
+  companies,
+  companyCategories,
+  getCompany,
+  getDepartment,
+} from "../data/companies";
 
 export function CompanyDepartmentSelection() {
   const routerState = useRouterState();
@@ -66,15 +71,16 @@ export function CompanyDepartmentSelection() {
     let filtered = companies;
 
     if (selectedCategory !== "all") {
-      filtered = filtered.filter(c => c.category === selectedCategory);
+      filtered = filtered.filter((c) => c.category === selectedCategory);
     }
 
     if (searchTerm) {
       const search = searchTerm.toLowerCase();
-      filtered = filtered.filter(c =>
-        c.name.toLowerCase().includes(search) ||
-        c.description.toLowerCase().includes(search) ||
-        c.departments.some(d => d.name.toLowerCase().includes(search))
+      filtered = filtered.filter(
+        (c) =>
+          c.name.toLowerCase().includes(search) ||
+          c.description.toLowerCase().includes(search) ||
+          c.departments.some((d) => d.name.toLowerCase().includes(search))
       );
     }
 
@@ -90,7 +96,8 @@ export function CompanyDepartmentSelection() {
               Enterprise Analysis Platform
             </h1>
             <p className="mx-auto max-w-2xl text-gray-600 text-lg">
-              Powerful tools for HR management, financial analysis, and proof of concept creation
+              Powerful tools for HR management, financial analysis, and proof of
+              concept creation
             </p>
           </div>
 
@@ -100,8 +107,12 @@ export function CompanyDepartmentSelection() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
                   <TrendingUp className="h-5 w-5 text-blue-600" />
                 </div>
-                <h3 className="mb-1 font-semibold text-gray-900">Real-time Analytics</h3>
-                <p className="text-gray-600 text-sm">Instant insights across all departments</p>
+                <h3 className="mb-1 font-semibold text-gray-900">
+                  Real-time Analytics
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Instant insights across all departments
+                </p>
               </CardContent>
             </Card>
             <Card className="border-gray-200">
@@ -109,8 +120,12 @@ export function CompanyDepartmentSelection() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-green-50">
                   <Shield className="h-5 w-5 text-green-600" />
                 </div>
-                <h3 className="mb-1 font-semibold text-gray-900">Enterprise Security</h3>
-                <p className="text-gray-600 text-sm">Bank-level security for your data</p>
+                <h3 className="mb-1 font-semibold text-gray-900">
+                  Enterprise Security
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Bank-level security for your data
+                </p>
               </CardContent>
             </Card>
             <Card className="border-gray-200">
@@ -118,8 +133,12 @@ export function CompanyDepartmentSelection() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50">
                   <Globe className="h-5 w-5 text-purple-600" />
                 </div>
-                <h3 className="mb-1 font-semibold text-gray-900">Global Scale</h3>
-                <p className="text-gray-600 text-sm">Supporting enterprises worldwide</p>
+                <h3 className="mb-1 font-semibold text-gray-900">
+                  Global Scale
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Supporting enterprises worldwide
+                </p>
               </CardContent>
             </Card>
           </div>
@@ -163,8 +182,12 @@ export function CompanyDepartmentSelection() {
             <Card className="border-gray-200">
               <CardContent className="py-12 text-center">
                 <Search className="mx-auto mb-4 h-12 w-12 text-gray-300" />
-                <h3 className="mb-2 font-semibold text-gray-900 text-xl">No companies found</h3>
-                <p className="text-gray-600">Try adjusting your search or filters</p>
+                <h3 className="mb-2 font-semibold text-gray-900 text-xl">
+                  No companies found
+                </h3>
+                <p className="text-gray-600">
+                  Try adjusting your search or filters
+                </p>
               </CardContent>
             </Card>
           ) : (
@@ -181,7 +204,9 @@ export function CompanyDepartmentSelection() {
                         <div className="flex items-center gap-3">
                           <span className="text-2xl">{category.icon}</span>
                           <div>
-                            <CardTitle className="text-lg">{company.name}</CardTitle>
+                            <CardTitle className="text-lg">
+                              {company.name}
+                            </CardTitle>
                             <CardDescription className="text-sm">
                               {company.description} • {company.size}
                             </CardDescription>
@@ -242,7 +267,8 @@ export function CompanyDepartmentSelection() {
                     Direct URL Access
                   </h3>
                   <p className="text-gray-600 text-sm">
-                    Navigate directly using: /{"{company-id}"}/{"{department-id}"}
+                    Navigate directly using: /{"{company-id}"}/
+                    {"{department-id}"}
                   </p>
                   <span className="text-gray-500 text-xs">
                     Example: /techcorp/engineering
@@ -288,7 +314,9 @@ export function CompanyDepartmentSelection() {
                 className="border-gray-200 transition-shadow hover:shadow-md"
               >
                 <CardHeader className="pb-4">
-                  <div className={`mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg ${module.bgAccent}`}>
+                  <div
+                    className={`mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg ${module.bgAccent}`}
+                  >
                     <Icon className={`h-5 w-5 ${module.accent}`} />
                   </div>
                   <CardTitle className="text-xl">{module.name}</CardTitle>
