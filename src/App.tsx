@@ -1,34 +1,38 @@
-import logo from './logo.svg'
+import logo from "./logo.svg";
 
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center space-y-6">
-        <img src={logo} className="h-40 mx-auto animate-spin-slow" alt="logo" />
+    <div className="flex min-h-screen items-center justify-center bg-background">
+      <div className="space-y-6 text-center">
+        <img alt="logo" className="mx-auto h-40 animate-spin-slow" src={logo} />
         <p className="text-lg text-muted-foreground">
-          Edit <code className="font-mono bg-muted px-1 py-0.5 rounded">src/App.tsx</code> and save to reload.
+          Edit{" "}
+          <code className="rounded bg-muted px-1 py-0.5 font-mono">
+            src/App.tsx
+          </code>{" "}
+          and save to reload.
         </p>
-        <div className="flex gap-4 justify-center">
+        <div className="flex justify-center gap-4">
           <a
             className="text-primary hover:underline"
             href="https://reactjs.org"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             Learn React
           </a>
           <a
             className="text-primary hover:underline"
             href="https://tanstack.com"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             Learn TanStack
           </a>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
