@@ -5,13 +5,19 @@ import {
   Building2,
   DollarSign,
   FileText,
-  Search,
-  Users,
-  TrendingUp,
-  Shield,
   Globe,
+  Search,
+  Shield,
+  TrendingUp,
+  Users,
 } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
+import {
+  companies,
+  companyCategories,
+  getCompany,
+  getDepartment,
+} from "../data/companies";
 import { Button } from "./ui/button";
 import {
   Card,
@@ -20,7 +26,8 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { companies, companyCategories, getCompany, getDepartment } from "../data/companies";
+
+const MAX_DEPARTMENTS_PREVIEW = 4;
 
 export function CompanyDepartmentSelection() {
   const routerState = useRouterState();
@@ -66,15 +73,16 @@ export function CompanyDepartmentSelection() {
     let filtered = companies;
 
     if (selectedCategory !== "all") {
-      filtered = filtered.filter(c => c.category === selectedCategory);
+      filtered = filtered.filter((c) => c.category === selectedCategory);
     }
 
     if (searchTerm) {
       const search = searchTerm.toLowerCase();
-      filtered = filtered.filter(c =>
-        c.name.toLowerCase().includes(search) ||
-        c.description.toLowerCase().includes(search) ||
-        c.departments.some(d => d.name.toLowerCase().includes(search))
+      filtered = filtered.filter(
+        (c) =>
+          c.name.toLowerCase().includes(search) ||
+          c.description.toLowerCase().includes(search) ||
+          c.departments.some((d) => d.name.toLowerCase().includes(search))
       );
     }
 
@@ -90,7 +98,8 @@ export function CompanyDepartmentSelection() {
               Enterprise Analysis Platform
             </h1>
             <p className="mx-auto max-w-2xl text-gray-600 text-lg">
-              Powerful tools for HR management, financial analysis, and proof of concept creation
+              Powerful tools for HR management, financial analysis, and proof of
+              concept creation
             </p>
           </div>
 
@@ -100,8 +109,12 @@ export function CompanyDepartmentSelection() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
                   <TrendingUp className="h-5 w-5 text-blue-600" />
                 </div>
-                <h3 className="mb-1 font-semibold text-gray-900">Real-time Analytics</h3>
-                <p className="text-gray-600 text-sm">Instant insights across all departments</p>
+                <h3 className="mb-1 font-semibold text-gray-900">
+                  Real-time Analytics
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Instant insights across all departments
+                </p>
               </CardContent>
             </Card>
             <Card className="border-gray-200">
@@ -109,8 +122,12 @@ export function CompanyDepartmentSelection() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-green-50">
                   <Shield className="h-5 w-5 text-green-600" />
                 </div>
-                <h3 className="mb-1 font-semibold text-gray-900">Enterprise Security</h3>
-                <p className="text-gray-600 text-sm">Bank-level security for your data</p>
+                <h3 className="mb-1 font-semibold text-gray-900">
+                  Enterprise Security
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Bank-level security for your data
+                </p>
               </CardContent>
             </Card>
             <Card className="border-gray-200">
@@ -118,8 +135,12 @@ export function CompanyDepartmentSelection() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50">
                   <Globe className="h-5 w-5 text-purple-600" />
                 </div>
-                <h3 className="mb-1 font-semibold text-gray-900">Global Scale</h3>
-                <p className="text-gray-600 text-sm">Supporting enterprises worldwide</p>
+                <h3 className="mb-1 font-semibold text-gray-900">
+                  Global Scale
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Supporting enterprises worldwide
+                </p>
               </CardContent>
             </Card>
           </div>
@@ -129,27 +150,27 @@ export function CompanyDepartmentSelection() {
               <div className="relative flex-1 lg:max-w-md">
                 <Search className="pointer-events-none absolute top-3 left-3 h-5 w-5 text-gray-400" />
                 <input
-                  type="text"
-                  placeholder="Search companies or departments..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full rounded-lg border border-gray-200 bg-white py-3 pr-4 pl-10 transition focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400"
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search companies or departments..."
+                  type="text"
+                  value={searchTerm}
                 />
               </div>
               <div className="flex flex-wrap gap-2">
                 <Button
-                  variant={selectedCategory === "all" ? "default" : "outline"}
-                  onClick={() => setSelectedCategory("all")}
                   className="h-9"
+                  onClick={() => setSelectedCategory("all")}
+                  variant={selectedCategory === "all" ? "default" : "outline"}
                 >
                   All Industries
                 </Button>
                 {Object.entries(companyCategories).map(([key, cat]) => (
                   <Button
-                    key={key}
-                    variant={selectedCategory === key ? "default" : "outline"}
-                    onClick={() => setSelectedCategory(key)}
                     className="h-9"
+                    key={key}
+                    onClick={() => setSelectedCategory(key)}
+                    variant={selectedCategory === key ? "default" : "outline"}
                   >
                     <span className="mr-1.5 text-base">{cat.icon}</span>
                     {cat.name}
@@ -163,8 +184,12 @@ export function CompanyDepartmentSelection() {
             <Card className="border-gray-200">
               <CardContent className="py-12 text-center">
                 <Search className="mx-auto mb-4 h-12 w-12 text-gray-300" />
-                <h3 className="mb-2 font-semibold text-gray-900 text-xl">No companies found</h3>
-                <p className="text-gray-600">Try adjusting your search or filters</p>
+                <h3 className="mb-2 font-semibold text-gray-900 text-xl">
+                  No companies found
+                </h3>
+                <p className="text-gray-600">
+                  Try adjusting your search or filters
+                </p>
               </CardContent>
             </Card>
           ) : (
@@ -173,15 +198,17 @@ export function CompanyDepartmentSelection() {
                 const category = companyCategories[company.category];
                 return (
                   <Card
-                    key={company.id}
                     className="overflow-hidden border-gray-200 transition-shadow hover:shadow-md"
+                    key={company.id}
                   >
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between">
                         <div className="flex items-center gap-3">
                           <span className="text-2xl">{category.icon}</span>
                           <div>
-                            <CardTitle className="text-lg">{company.name}</CardTitle>
+                            <CardTitle className="text-lg">
+                              {company.name}
+                            </CardTitle>
                             <CardDescription className="text-sm">
                               {company.description} • {company.size}
                             </CardDescription>
@@ -195,34 +222,40 @@ export function CompanyDepartmentSelection() {
                           Departments
                         </h4>
                         <div className="grid grid-cols-2 gap-2">
-                          {company.departments.slice(0, 4).map((dept) => (
-                            <Link
-                              key={dept.id}
-                              params={{
-                                companyId: company.id,
-                                departmentId: dept.id,
-                              }}
-                              to="/$companyId/$departmentId"
-                            >
-                              <div className="rounded-lg border border-gray-200 bg-white p-2.5 transition-all hover:border-gray-300 hover:bg-gray-50">
-                                <div className="flex items-center justify-between">
-                                  <div>
-                                    <span className="font-medium text-gray-900 text-sm">
-                                      {dept.name}
-                                    </span>
-                                    <div className="text-gray-500 text-xs">
-                                      {dept.memberCount} members
+                          {company.departments
+                            .slice(0, MAX_DEPARTMENTS_PREVIEW)
+                            .map((dept) => (
+                              <Link
+                                key={dept.id}
+                                params={{
+                                  companyId: company.id,
+                                  departmentId: dept.id,
+                                }}
+                                to="/$companyId/$departmentId"
+                              >
+                                <div className="rounded-lg border border-gray-200 bg-white p-2.5 transition-all hover:border-gray-300 hover:bg-gray-50">
+                                  <div className="flex items-center justify-between">
+                                    <div>
+                                      <span className="font-medium text-gray-900 text-sm">
+                                        {dept.name}
+                                      </span>
+                                      <div className="text-gray-500 text-xs">
+                                        {dept.memberCount} members
+                                      </div>
                                     </div>
+                                    <ArrowRight className="h-3.5 w-3.5 text-gray-400" />
                                   </div>
-                                  <ArrowRight className="h-3.5 w-3.5 text-gray-400" />
                                 </div>
-                              </div>
-                            </Link>
-                          ))}
+                              </Link>
+                            ))}
                         </div>
-                        {company.departments.length > 4 && (
+                        {company.departments.length >
+                          MAX_DEPARTMENTS_PREVIEW && (
                           <p className="mt-2 text-center text-gray-500 text-xs">
-                            +{company.departments.length - 4} more departments
+                            +
+                            {company.departments.length -
+                              MAX_DEPARTMENTS_PREVIEW}{" "}
+                            more departments
                           </p>
                         )}
                       </div>
@@ -242,7 +275,8 @@ export function CompanyDepartmentSelection() {
                     Direct URL Access
                   </h3>
                   <p className="text-gray-600 text-sm">
-                    Navigate directly using: /{"{company-id}"}/{"{department-id}"}
+                    Navigate directly using: /{"{company-id}"}/
+                    {"{department-id}"}
                   </p>
                   <span className="text-gray-500 text-xs">
                     Example: /techcorp/engineering
@@ -284,11 +318,13 @@ export function CompanyDepartmentSelection() {
             const Icon = module.icon;
             return (
               <Card
-                key={module.id}
                 className="border-gray-200 transition-shadow hover:shadow-md"
+                key={module.id}
               >
                 <CardHeader className="pb-4">
-                  <div className={`mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg ${module.bgAccent}`}>
+                  <div
+                    className={`mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg ${module.bgAccent}`}
+                  >
                     <Icon className={`h-5 w-5 ${module.accent}`} />
                   </div>
                   <CardTitle className="text-xl">{module.name}</CardTitle>
@@ -325,7 +361,7 @@ export function CompanyDepartmentSelection() {
 
         <div className="flex justify-center">
           <Link to="/">
-            <Button variant="outline" className="h-10">
+            <Button className="h-10" variant="outline">
               <Building2 className="mr-2 h-4 w-4" />
               Switch Company/Department
             </Button>

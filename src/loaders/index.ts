@@ -1,4 +1,8 @@
-import { isValidCompanyDepartment, getCompany, getDepartment } from "../data/companies";
+import {
+  getCompany,
+  getDepartment,
+  isValidCompanyDepartment,
+} from "../data/companies";
 
 // Helper function to simulate async data fetching
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -41,12 +45,16 @@ export const companyDepartmentLoader = ({
     }
 
     throw new Error(
-      `Department "${departmentId}" not found in ${company.name}. Valid departments are: ${company.departments.map(d => d.id).join(", ")}`
+      `Department "${departmentId}" not found in ${company.name}. Valid departments are: ${company.departments.map((d) => d.id).join(", ")}`
     );
   }
 
-  const company = getCompany(companyId)!;
-  const department = getDepartment(companyId, departmentId)!;
+  const company = getCompany(companyId);
+  const department = getDepartment(companyId, departmentId);
+
+  if (!(company && department)) {
+    throw new Error("Unexpected validation failure. Please recheck the URL.");
+  }
 
   // Return validated data
   return {

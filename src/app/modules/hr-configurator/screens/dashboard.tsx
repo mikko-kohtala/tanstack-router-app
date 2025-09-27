@@ -6,16 +6,16 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../../../components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "../../../../components/ui/card";
 
-export function HrConfigurator() {
+export default function HrDashboard() {
   const stats = [
     { label: "Total Employees", value: "1,234", icon: Users, change: "+12%" },
     { label: "Open Positions", value: "47", icon: Award, change: "+8%" },

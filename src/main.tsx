@@ -2,7 +2,7 @@ import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import ReactDom from "react-dom/client";
 
-import { routeTree } from "./routes.tsx";
+import { routeTree } from "./app/routes.tsx";
 import "./styles.css";
 
 const router = createRouter({
@@ -15,9 +15,10 @@ const router = createRouter({
 });
 
 declare module "@tanstack/react-router" {
-  type Register = {
+  /* biome-ignore lint/nursery/useConsistentTypeDefinitions: Module augmentation requires interface for TanStack Router */
+  interface Register {
     router: typeof router;
-  };
+  }
 }
 
 const rootElement = document.getElementById("app");
