@@ -8,8 +8,8 @@ import {
 } from "../../../../components/ui/card";
 
 const TX = [
-  { date: "2025-09-01", desc: "Stripe Payout", amount: 85000, type: "+" },
-  { date: "2025-09-03", desc: "AWS", amount: -12450, type: "-" },
+  { date: "2025-09-01", desc: "Stripe Payout", amount: 85_000, type: "+" },
+  { date: "2025-09-03", desc: "AWS", amount: -12_450, type: "-" },
   { date: "2025-09-05", desc: "Contractor", amount: -8200, type: "-" },
   { date: "2025-09-09", desc: "Enterprise License", amount: -3200, type: "-" },
 ];
@@ -58,8 +58,8 @@ export default function MoneyTransactionsScreen() {
               <tbody>
                 {TX.map((t) => (
                   <tr
-                    key={`${t.date}-${t.desc}`}
                     className="border-b last:border-b-0"
+                    key={`${t.date}-${t.desc}`}
                   >
                     <td className="px-2 py-2">{t.date}</td>
                     <td className="px-2 py-2">{t.desc}</td>

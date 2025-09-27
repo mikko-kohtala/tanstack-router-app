@@ -26,7 +26,7 @@ export default function HrReportsScreen() {
         <CardContent>
           <form className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <label className="space-y-1">
-              <span className="text-sm font-medium">Report</span>
+              <span className="font-medium text-sm">Report</span>
               <select
                 className="w-full rounded-md border px-3 py-2"
                 defaultValue={REPORTS[0].name}
@@ -39,20 +39,20 @@ export default function HrReportsScreen() {
               </select>
             </label>
             <label className="space-y-1">
-              <span className="text-sm font-medium">From</span>
+              <span className="font-medium text-sm">From</span>
               <input
                 className="w-full rounded-md border px-3 py-2"
                 type="date"
               />
             </label>
             <label className="space-y-1">
-              <span className="text-sm font-medium">To</span>
+              <span className="font-medium text-sm">To</span>
               <input
                 className="w-full rounded-md border px-3 py-2"
                 type="date"
               />
             </label>
-            <div className="md:col-span-3 flex gap-2">
+            <div className="flex gap-2 md:col-span-3">
               <Button type="button">Generate</Button>
               <Button type="button" variant="outline">
                 Export CSV
@@ -71,8 +71,8 @@ export default function HrReportsScreen() {
           <ul className="space-y-2 text-sm">
             {REPORTS.map((r) => (
               <li
-                key={r.name}
                 className="flex items-center justify-between rounded border p-3"
+                key={r.name}
               >
                 <div>
                   <div className="font-medium">{r.name}</div>

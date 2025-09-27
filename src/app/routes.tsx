@@ -1,25 +1,22 @@
 import { createRootRoute, createRoute, Outlet } from "@tanstack/react-router";
 import { AppModuleLayout } from "../components/app-module-layout";
 import { CompanyDepartmentSelection } from "../components/company-department-selection";
-import HrDashboard from "./modules/hr-configurator/screens/dashboard";
-import MoneyDashboard from "./modules/money-analysis/screens/dashboard";
-import PocDashboard from "./modules/poc-creator/screens/dashboard";
 import { RootLayout } from "../components/root-layout";
 import { companyDepartmentLoader, moduleLoader, rootLoader } from "../loaders";
-
-// Sub-page screens
-import HrSettingsScreen from "./modules/hr-configurator/screens/settings";
+import ModuleNotFound from "./components/module-not-found";
+import HrDashboard from "./modules/hr-configurator/screens/dashboard";
 import HrPoliciesScreen from "./modules/hr-configurator/screens/policies";
 import HrReportsScreen from "./modules/hr-configurator/screens/reports";
-
+// Sub-page screens
+import HrSettingsScreen from "./modules/hr-configurator/screens/settings";
+import MoneyBudgetsScreen from "./modules/money-analysis/screens/budgets";
+import MoneyDashboard from "./modules/money-analysis/screens/dashboard";
+import MoneyReportsScreen from "./modules/money-analysis/screens/reports";
+import MoneyTransactionsScreen from "./modules/money-analysis/screens/transactions";
+import PocAnalyticsScreen from "./modules/poc-creator/screens/analytics";
+import PocDashboard from "./modules/poc-creator/screens/dashboard";
 import PocProjectsScreen from "./modules/poc-creator/screens/projects";
 import PocTemplatesScreen from "./modules/poc-creator/screens/templates";
-import PocAnalyticsScreen from "./modules/poc-creator/screens/analytics";
-
-import MoneyTransactionsScreen from "./modules/money-analysis/screens/transactions";
-import MoneyBudgetsScreen from "./modules/money-analysis/screens/budgets";
-import MoneyReportsScreen from "./modules/money-analysis/screens/reports";
-import ModuleNotFound from "./components/module-not-found";
 
 // Root route with top navigation and root loader
 export const rootRoute = createRootRoute({

@@ -37,7 +37,7 @@ export default function PocProjectsScreen() {
               </thead>
               <tbody>
                 {PROJECTS.map((p) => (
-                  <tr key={p.name} className="border-b last:border-b-0">
+                  <tr className="border-b last:border-b-0" key={p.name}>
                     <td className="px-2 py-2 font-medium">{p.name}</td>
                     <td className="px-2 py-2">{p.owner}</td>
                     <td className="px-2 py-2">{p.status}</td>

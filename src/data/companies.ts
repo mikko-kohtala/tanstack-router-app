@@ -1,11 +1,11 @@
-export interface Department {
+export type Department = {
   id: string;
   name: string;
   description: string;
   memberCount: number;
-}
+};
 
-export interface Company {
+export type Company = {
   id: string;
   name: string;
   description: string;
@@ -17,7 +17,7 @@ export interface Company {
     | "manufacturing";
   size: string;
   departments: Department[];
-}
+};
 
 export const companies: Company[] = [
   {
@@ -497,6 +497,8 @@ export function isValidCompanyDepartment(
   departmentId: string
 ): boolean {
   const company = getCompany(companyId);
-  if (!company) return false;
+  if (!company) {
+    return false;
+  }
   return company.departments.some((d) => d.id === departmentId);
 }

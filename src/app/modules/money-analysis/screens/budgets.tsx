@@ -7,11 +7,35 @@ import {
 } from "../../../../components/ui/card";
 
 const CATS = [
-  { name: "Engineering", limit: 850000, used: 612000 },
-  { name: "Sales", limit: 450000, used: 380000 },
-  { name: "Marketing", limit: 320000, used: 298000 },
-  { name: "Operations", limit: 180000, used: 95000 },
+  { name: "Engineering", limit: 850_000, used: 612_000 },
+  { name: "Sales", limit: 450_000, used: 380_000 },
+  { name: "Marketing", limit: 320_000, used: 298_000 },
+  { name: "Operations", limit: 180_000, used: 95_000 },
 ];
+
+const PERCENT_DENOMINATOR = 100;
+const THRESHOLD_ALERT = 90;
+const THRESHOLD_WARN = 75;
+
+function barClass(pct: number): string {
+  if (pct >= THRESHOLD_ALERT) {
+    return "bg-red-500";
+  }
+  if (pct >= THRESHOLD_WARN) {
+    return "bg-yellow-500";
+  }
+  return "bg-green-500";
+}
+
+function textClass(pct: number): string {
+  if (pct >= THRESHOLD_ALERT) {
+    return "text-red-600";
+  }
+  if (pct >= THRESHOLD_WARN) {
+    return "text-yellow-600";
+  }
+  return "text-green-600";
+}
 
 export default function MoneyBudgetsScreen() {
   return (
@@ -26,15 +50,10 @@ export default function MoneyBudgetsScreen() {
         <CardContent>
           <div className="space-y-4">
             {CATS.map((c) => {
-              const pct = Math.round((c.used / c.limit) * 100);
-              const bar =
-                pct >= 90
-                  ? "bg-red-500"
-                  : pct >= 75
-                    ? "bg-yellow-500"
-                    : "bg-green-500";
+              const pct = Math.round((c.used / c.limit) * PERCENT_DENOMINATOR);
+              const bar = barClass(pct);
               return (
-                <div key={c.name} className="space-y-2">
+                <div className="space-y-2" key={c.name}>
                   <div className="flex items-center justify-between text-sm">
                     <div className="font-medium">{c.name}</div>
                     <div className="text-muted-foreground">
@@ -47,19 +66,7 @@ export default function MoneyBudgetsScreen() {
                         style: "currency",
                         currency: "USD",
                       })}{" "}
-                      (
-                      <span
-                        className={
-                          pct >= 90
-                            ? "text-red-600"
-                            : pct >= 75
-                              ? "text-yellow-600"
-                              : "text-green-600"
-                        }
-                      >
-                        {pct}%
-                      </span>
-                      )
+                      ( <span className={textClass(pct)}>{pct}%</span> )
                     </div>
                   </div>
                   <div className="h-2 w-full rounded bg-gray-200">

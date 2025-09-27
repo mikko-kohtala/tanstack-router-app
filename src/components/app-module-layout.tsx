@@ -1,9 +1,9 @@
 import { Link, useLocation, useRouterState } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import type { ReactNode } from "react";
+import { moduleBasePathFrom, moduleNavItems } from "../app/nav";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/button";
-import { moduleBasePathFrom, moduleNavItems } from "../app/nav";
 
 type AppModuleLayoutProps = {
   moduleName: string;

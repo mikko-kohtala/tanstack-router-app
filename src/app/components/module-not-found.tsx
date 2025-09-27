@@ -1,9 +1,8 @@
-import { Link, useLocation, useRouterState } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Button } from "../../components/ui/button";
 import { moduleBasePathFrom, moduleNavItems } from "../nav";
 
 export default function ModuleNotFound({ moduleName }: { moduleName: string }) {
-  const routerState = useRouterState();
   const location = useLocation();
   const basePath = moduleBasePathFrom(location.pathname);
   const items = moduleNavItems(moduleName, basePath);

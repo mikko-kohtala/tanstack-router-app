@@ -1,12 +1,14 @@
-import { BarChart, FileText, Home, Settings } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { BarChart, FileText, Home, Settings } from "lucide-react";
 
 export type NavItem = { name: string; href: string; icon?: LucideIcon };
+
+const MODULE_BASE_SEGMENTS = 3;
 
 export function moduleBasePathFrom(pathname: string): string {
   const parts = pathname.split("/").filter(Boolean);
   // companyId / departmentId / module-slug
-  return `/${parts.slice(0, 3).join("/")}`;
+  return `/${parts.slice(0, MODULE_BASE_SEGMENTS).join("/")}`;
 }
 
 export function moduleNavItems(

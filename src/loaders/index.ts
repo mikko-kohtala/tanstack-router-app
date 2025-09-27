@@ -1,7 +1,7 @@
 import {
-  isValidCompanyDepartment,
   getCompany,
   getDepartment,
+  isValidCompanyDepartment,
 } from "../data/companies";
 
 // Helper function to simulate async data fetching
@@ -49,8 +49,12 @@ export const companyDepartmentLoader = ({
     );
   }
 
-  const company = getCompany(companyId)!;
-  const department = getDepartment(companyId, departmentId)!;
+  const company = getCompany(companyId);
+  const department = getDepartment(companyId, departmentId);
+
+  if (!(company && department)) {
+    throw new Error("Unexpected validation failure. Please recheck the URL.");
+  }
 
   // Return validated data
   return {

@@ -23,7 +23,7 @@ export default function HrSettingsScreen() {
           <form className="space-y-4">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <label className="space-y-1">
-                <span className="text-sm font-medium">
+                <span className="font-medium text-sm">
                   Default Working Hours
                 </span>
                 <input
@@ -33,7 +33,7 @@ export default function HrSettingsScreen() {
                 />
               </label>
               <label className="space-y-1">
-                <span className="text-sm font-medium">
+                <span className="font-medium text-sm">
                   Vacation Days / Year
                 </span>
                 <input
@@ -44,7 +44,7 @@ export default function HrSettingsScreen() {
                 />
               </label>
               <label className="space-y-1">
-                <span className="text-sm font-medium">
+                <span className="font-medium text-sm">
                   Probation Period (months)
                 </span>
                 <input
@@ -55,7 +55,7 @@ export default function HrSettingsScreen() {
                 />
               </label>
               <label className="space-y-1">
-                <span className="text-sm font-medium">
+                <span className="font-medium text-sm">
                   Overtime Approval Required
                 </span>
                 <select
@@ -70,12 +70,12 @@ export default function HrSettingsScreen() {
 
             <div className="flex items-center gap-2 pt-2">
               <input
-                id="remotePolicy"
-                type="checkbox"
                 className="h-4 w-4"
                 defaultChecked
+                id="remotePolicy"
+                type="checkbox"
               />
-              <label htmlFor="remotePolicy" className="text-sm">
+              <label className="text-sm" htmlFor="remotePolicy">
                 Allow Remote Work by Default
               </label>
             </div>

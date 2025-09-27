@@ -5,13 +5,19 @@ import {
   Building2,
   DollarSign,
   FileText,
-  Search,
-  Users,
-  TrendingUp,
-  Shield,
   Globe,
+  Search,
+  Shield,
+  TrendingUp,
+  Users,
 } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
+import {
+  companies,
+  companyCategories,
+  getCompany,
+  getDepartment,
+} from "../data/companies";
 import { Button } from "./ui/button";
 import {
   Card,
@@ -20,12 +26,8 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import {
-  companies,
-  companyCategories,
-  getCompany,
-  getDepartment,
-} from "../data/companies";
+
+const MAX_DEPARTMENTS_PREVIEW = 4;
 
 export function CompanyDepartmentSelection() {
   const routerState = useRouterState();
@@ -148,27 +150,27 @@ export function CompanyDepartmentSelection() {
               <div className="relative flex-1 lg:max-w-md">
                 <Search className="pointer-events-none absolute top-3 left-3 h-5 w-5 text-gray-400" />
                 <input
-                  type="text"
-                  placeholder="Search companies or departments..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full rounded-lg border border-gray-200 bg-white py-3 pr-4 pl-10 transition focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400"
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search companies or departments..."
+                  type="text"
+                  value={searchTerm}
                 />
               </div>
               <div className="flex flex-wrap gap-2">
                 <Button
-                  variant={selectedCategory === "all" ? "default" : "outline"}
-                  onClick={() => setSelectedCategory("all")}
                   className="h-9"
+                  onClick={() => setSelectedCategory("all")}
+                  variant={selectedCategory === "all" ? "default" : "outline"}
                 >
                   All Industries
                 </Button>
                 {Object.entries(companyCategories).map(([key, cat]) => (
                   <Button
-                    key={key}
-                    variant={selectedCategory === key ? "default" : "outline"}
-                    onClick={() => setSelectedCategory(key)}
                     className="h-9"
+                    key={key}
+                    onClick={() => setSelectedCategory(key)}
+                    variant={selectedCategory === key ? "default" : "outline"}
                   >
                     <span className="mr-1.5 text-base">{cat.icon}</span>
                     {cat.name}
@@ -196,8 +198,8 @@ export function CompanyDepartmentSelection() {
                 const category = companyCategories[company.category];
                 return (
                   <Card
-                    key={company.id}
                     className="overflow-hidden border-gray-200 transition-shadow hover:shadow-md"
+                    key={company.id}
                   >
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between">
@@ -220,34 +222,40 @@ export function CompanyDepartmentSelection() {
                           Departments
                         </h4>
                         <div className="grid grid-cols-2 gap-2">
-                          {company.departments.slice(0, 4).map((dept) => (
-                            <Link
-                              key={dept.id}
-                              params={{
-                                companyId: company.id,
-                                departmentId: dept.id,
-                              }}
-                              to="/$companyId/$departmentId"
-                            >
-                              <div className="rounded-lg border border-gray-200 bg-white p-2.5 transition-all hover:border-gray-300 hover:bg-gray-50">
-                                <div className="flex items-center justify-between">
-                                  <div>
-                                    <span className="font-medium text-gray-900 text-sm">
-                                      {dept.name}
-                                    </span>
-                                    <div className="text-gray-500 text-xs">
-                                      {dept.memberCount} members
+                          {company.departments
+                            .slice(0, MAX_DEPARTMENTS_PREVIEW)
+                            .map((dept) => (
+                              <Link
+                                key={dept.id}
+                                params={{
+                                  companyId: company.id,
+                                  departmentId: dept.id,
+                                }}
+                                to="/$companyId/$departmentId"
+                              >
+                                <div className="rounded-lg border border-gray-200 bg-white p-2.5 transition-all hover:border-gray-300 hover:bg-gray-50">
+                                  <div className="flex items-center justify-between">
+                                    <div>
+                                      <span className="font-medium text-gray-900 text-sm">
+                                        {dept.name}
+                                      </span>
+                                      <div className="text-gray-500 text-xs">
+                                        {dept.memberCount} members
+                                      </div>
                                     </div>
+                                    <ArrowRight className="h-3.5 w-3.5 text-gray-400" />
                                   </div>
-                                  <ArrowRight className="h-3.5 w-3.5 text-gray-400" />
                                 </div>
-                              </div>
-                            </Link>
-                          ))}
+                              </Link>
+                            ))}
                         </div>
-                        {company.departments.length > 4 && (
+                        {company.departments.length >
+                          MAX_DEPARTMENTS_PREVIEW && (
                           <p className="mt-2 text-center text-gray-500 text-xs">
-                            +{company.departments.length - 4} more departments
+                            +
+                            {company.departments.length -
+                              MAX_DEPARTMENTS_PREVIEW}{" "}
+                            more departments
                           </p>
                         )}
                       </div>
@@ -310,8 +318,8 @@ export function CompanyDepartmentSelection() {
             const Icon = module.icon;
             return (
               <Card
-                key={module.id}
                 className="border-gray-200 transition-shadow hover:shadow-md"
+                key={module.id}
               >
                 <CardHeader className="pb-4">
                   <div
@@ -353,7 +361,7 @@ export function CompanyDepartmentSelection() {
 
         <div className="flex justify-center">
           <Link to="/">
-            <Button variant="outline" className="h-10">
+            <Button className="h-10" variant="outline">
               <Building2 className="mr-2 h-4 w-4" />
               Switch Company/Department
             </Button>
