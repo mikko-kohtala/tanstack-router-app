@@ -1,18 +1,4 @@
-// Valid companies and departments configuration
-export const validCompanies = {
-  techcorp: {
-    name: "TechCorp Industries",
-    departments: ["engineering", "marketing"],
-  },
-  globalfinance: {
-    name: "Global Finance Group",
-    departments: ["trading", "compliance"],
-  },
-  healthplus: {
-    name: "HealthPlus Medical",
-    departments: ["clinical", "research"],
-  },
-};
+import { isValidCompanyDepartment, getCompany, getDepartment } from "../data/companies";
 
 // Helper function to simulate async data fetching
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -44,30 +30,36 @@ export const companyDepartmentLoader = ({
     `🔍 Validating company: ${companyId}, department: ${departmentId}`
   );
 
-  // Check if company exists
-  const company = validCompanies[companyId as keyof typeof validCompanies];
-  if (!company) {
+  // Check if company and department combination is valid
+  if (!isValidCompanyDepartment(companyId, departmentId)) {
+    const company = getCompany(companyId);
+
+    if (!company) {
+      throw new Error(
+        `Company "${companyId}" not found. Please check the URL and try again.`
+      );
+    }
+
     throw new Error(
-      `Company "${companyId}" not found. Valid companies are: ${Object.keys(validCompanies).join(", ")}`
+      `Department "${departmentId}" not found in ${company.name}. Valid departments are: ${company.departments.map(d => d.id).join(", ")}`
     );
   }
 
-  // Check if department exists for this company
-  if (!company.departments.includes(departmentId)) {
-    throw new Error(
-      `Department "${departmentId}" not found in ${company.name}. Valid departments are: ${company.departments.join(", ")}`
-    );
-  }
+  const company = getCompany(companyId)!;
+  const department = getDepartment(companyId, departmentId)!;
 
   // Return validated data
   return {
     company: {
       id: companyId,
       name: company.name,
+      description: company.description,
     },
     department: {
       id: departmentId,
-      name: departmentId.charAt(0).toUpperCase() + departmentId.slice(1),
+      name: department.name,
+      description: department.description,
+      memberCount: department.memberCount,
     },
     validated: true,
   };
