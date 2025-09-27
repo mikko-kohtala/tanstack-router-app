@@ -1,23 +1,36 @@
 import { Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { Button } from "./ui/button";
 
 export const RootLayout = () => (
-  <div style={{ padding: "20px" }}>
-    <nav style={{ marginBottom: "20px", display: "flex", gap: "15px" }}>
-      <Link to="/" activeProps={{ style: { fontWeight: "bold" } }}>
-        Home
-      </Link>
-      <Link to="/dashboard" activeProps={{ style: { fontWeight: "bold" } }}>
-        Dashboard
-      </Link>
-      <Link to="/products" activeProps={{ style: { fontWeight: "bold" } }}>
-        Products
-      </Link>
-      <Link to="/users" activeProps={{ style: { fontWeight: "bold" } }}>
-        Users
-      </Link>
-    </nav>
-    <Outlet />
+  <div className="min-h-screen bg-background">
+    <header className="border-b">
+      <nav className="container mx-auto px-4 py-4 flex gap-4">
+        <Link to="/">
+          <Button variant="ghost" className="font-medium">
+            Home
+          </Button>
+        </Link>
+        <Link to="/dashboard">
+          <Button variant="ghost" className="font-medium">
+            Dashboard
+          </Button>
+        </Link>
+        <Link to="/products">
+          <Button variant="ghost" className="font-medium">
+            Products
+          </Button>
+        </Link>
+        <Link to="/users">
+          <Button variant="ghost" className="font-medium">
+            Users
+          </Button>
+        </Link>
+      </nav>
+    </header>
+    <main className="container mx-auto px-4 py-8">
+      <Outlet />
+    </main>
     <TanStackRouterDevtools />
   </div>
 );
