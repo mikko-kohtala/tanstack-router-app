@@ -1,20 +1,6 @@
-import {
-  ArrowDownRight,
-  ArrowUpRight,
-  BarChart3,
-  DollarSign,
-  Download,
-  PieChart,
-  TrendingUp,
-} from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, BarChart3, DollarSign, Download, PieChart, TrendingUp } from "lucide-react";
 import { Button } from "../../../../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../../../../components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../../components/ui/card";
 
 export default function MoneyDashboard() {
   const financialMetrics = [
@@ -107,18 +93,14 @@ export default function MoneyDashboard() {
       <div className="flex items-start justify-between">
         <div>
           <h2 className="font-bold text-2xl text-gray-900">Money Analysis</h2>
-          <p className="mt-1 text-gray-600">
-            Comprehensive financial data analysis and reporting
-          </p>
+          <p className="mt-1 text-gray-600">Comprehensive financial data analysis and reporting</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline">
             <Download className="mr-2 h-4 w-4" />
             Export Report
           </Button>
-          <Button className="bg-purple-600 hover:bg-purple-700">
-            Generate Analysis
-          </Button>
+          <Button className="bg-purple-600 hover:bg-purple-700">Generate Analysis</Button>
         </div>
       </div>
 
@@ -126,10 +108,8 @@ export default function MoneyDashboard() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {financialMetrics.map((metric) => {
           const Icon = metric.icon;
-          const TrendIcon =
-            metric.trend === "up" ? ArrowUpRight : ArrowDownRight;
-          const trendColor =
-            metric.trend === "up" ? "text-green-600" : "text-red-600";
+          const TrendIcon = metric.trend === "up" ? ArrowUpRight : ArrowDownRight;
+          const trendColor = metric.trend === "up" ? "text-green-600" : "text-red-600";
 
           return (
             <Card key={metric.label}>
@@ -138,9 +118,7 @@ export default function MoneyDashboard() {
                   <p className="text-gray-600 text-sm">{metric.label}</p>
                   <Icon className="h-5 w-5 text-purple-600" />
                 </div>
-                <p className="font-bold text-2xl text-gray-900">
-                  {metric.value}
-                </p>
+                <p className="font-bold text-2xl text-gray-900">{metric.value}</p>
                 <div className={`mt-2 flex items-center ${trendColor}`}>
                   <TrendIcon className="mr-1 h-4 w-4" />
                   <span className="font-medium text-sm">{metric.change}</span>
@@ -155,9 +133,7 @@ export default function MoneyDashboard() {
       <Card>
         <CardHeader>
           <CardTitle>Department Budget Analysis</CardTitle>
-          <CardDescription>
-            Current spending vs allocated budgets
-          </CardDescription>
+          <CardDescription>Current spending vs allocated budgets</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -169,9 +145,7 @@ export default function MoneyDashboard() {
                     <span className="text-gray-600 text-sm">
                       {dept.spent} / {dept.budget}
                     </span>
-                    <span
-                      className={`rounded-full px-2 py-1 text-xs ${getBudgetColor(dept.percentage)}`}
-                    >
+                    <span className={`rounded-full px-2 py-1 text-xs ${getBudgetColor(dept.percentage)}`}>
                       {dept.percentage}%
                     </span>
                   </div>
@@ -210,24 +184,16 @@ export default function MoneyDashboard() {
                 key={`${transaction.date}-${transaction.description}`}
               >
                 <div className="flex-1">
-                  <p className="font-medium text-gray-900">
-                    {transaction.description}
-                  </p>
+                  <p className="font-medium text-gray-900">{transaction.description}</p>
                   <div className="mt-1 flex items-center gap-3">
-                    <span className="text-gray-500 text-xs">
-                      {transaction.date}
-                    </span>
+                    <span className="text-gray-500 text-xs">{transaction.date}</span>
                     <span className="rounded-full bg-gray-100 px-2 py-1 text-gray-600 text-xs">
                       {transaction.category}
                     </span>
                   </div>
                 </div>
                 <div
-                  className={`font-semibold ${
-                    transaction.amount.startsWith("+")
-                      ? "text-green-600"
-                      : "text-red-600"
-                  }`}
+                  className={`font-semibold ${transaction.amount.startsWith("+") ? "text-green-600" : "text-red-600"}`}
                 >
                   {transaction.amount}
                 </div>
@@ -246,27 +212,21 @@ export default function MoneyDashboard() {
           <CardContent className="p-6">
             <BarChart3 className="mb-3 h-8 w-8 text-purple-600" />
             <h3 className="font-semibold text-gray-900">Budget Forecast</h3>
-            <p className="mt-1 text-gray-600 text-sm">
-              Analyze spending trends and projections
-            </p>
+            <p className="mt-1 text-gray-600 text-sm">Analyze spending trends and projections</p>
           </CardContent>
         </Card>
         <Card className="cursor-pointer transition-shadow hover:shadow-md">
           <CardContent className="p-6">
             <PieChart className="mb-3 h-8 w-8 text-blue-600" />
             <h3 className="font-semibold text-gray-900">Cost Breakdown</h3>
-            <p className="mt-1 text-gray-600 text-sm">
-              Detailed analysis by category
-            </p>
+            <p className="mt-1 text-gray-600 text-sm">Detailed analysis by category</p>
           </CardContent>
         </Card>
         <Card className="cursor-pointer transition-shadow hover:shadow-md">
           <CardContent className="p-6">
             <TrendingUp className="mb-3 h-8 w-8 text-green-600" />
             <h3 className="font-semibold text-gray-900">Revenue Insights</h3>
-            <p className="mt-1 text-gray-600 text-sm">
-              Growth opportunities and trends
-            </p>
+            <p className="mt-1 text-gray-600 text-sm">Growth opportunities and trends</p>
           </CardContent>
         </Card>
       </div>

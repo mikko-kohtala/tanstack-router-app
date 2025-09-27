@@ -11,10 +11,7 @@ export function moduleBasePathFrom(pathname: string): string {
   return `/${parts.slice(0, MODULE_BASE_SEGMENTS).join("/")}`;
 }
 
-export function moduleNavItems(
-  moduleName: string,
-  basePath: string
-): NavItem[] {
+export function moduleNavItems(moduleName: string, basePath: string): NavItem[] {
   switch (moduleName) {
     case "HR Configurator":
       return [

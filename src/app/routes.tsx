@@ -1,15 +1,12 @@
-import {
-  createRootRoute,
-  createRoute,
-  Outlet,
-  redirect,
-} from "@tanstack/react-router";
+import { createRootRoute, createRoute, Outlet } from "@tanstack/react-router";
 import { AppModuleLayout } from "../components/app-module-layout";
+import { AppWrapper } from "../components/app-wrapper";
 import { CompanyDepartmentSelection } from "../components/company-department-selection";
 import { KeycloakLogin } from "../components/keycloak-login";
 import { LogoutPage } from "../components/logout-page";
-import { companyDepartmentLoader, moduleLoader, rootLoader } from "../loaders";
-import { useAuthStore } from "../stores/auth-store";
+import { companyDepartmentLoader } from "../loaders/company-department-loader";
+import { moduleLoader } from "../loaders/module-loader";
+import { rootLoader } from "../loaders/root-loader";
 import ModuleNotFound from "./components/module-not-found";
 import HrDashboard from "./modules/hr-configurator/screens/dashboard";
 import HrPoliciesScreen from "./modules/hr-configurator/screens/policies";
@@ -25,15 +22,13 @@ import PocDashboard from "./modules/poc-creator/screens/dashboard";
 import PocProjectsScreen from "./modules/poc-creator/screens/projects";
 import PocTemplatesScreen from "./modules/poc-creator/screens/templates";
 
-import { AppWrapper } from "../components/app-wrapper";
-
 // Root route with top navigation and root loader
 export const rootRoute = createRootRoute({
   loader: rootLoader,
   component: AppWrapper,
 });
 
-// Index route - welcome page with auth check
+// Index route - welcome page
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
@@ -58,12 +53,6 @@ const logoutRoute = createRoute({
 const companyDepartmentRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "$companyId/$departmentId",
-  beforeLoad: () => {
-    const { isAuthenticated } = useAuthStore.getState();
-    if (!isAuthenticated) {
-      throw redirect({ to: "/keycloak" });
-    }
-  },
   loader: companyDepartmentLoader,
   component: CompanyDepartmentSelection,
 });
@@ -72,12 +61,6 @@ const companyDepartmentRoute = createRoute({
 const hrConfiguratorRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "$companyId/$departmentId/hr-configurator",
-  beforeLoad: () => {
-    const { isAuthenticated } = useAuthStore.getState();
-    if (!isAuthenticated) {
-      throw redirect({ to: "/keycloak" });
-    }
-  },
   loader: moduleLoader,
   component: () => (
     <AppModuleLayout moduleName="HR Configurator">
@@ -120,12 +103,6 @@ const hrNotFoundRoute = createRoute({
 const pocCreatorRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "$companyId/$departmentId/poc-creator",
-  beforeLoad: () => {
-    const { isAuthenticated } = useAuthStore.getState();
-    if (!isAuthenticated) {
-      throw redirect({ to: "/keycloak" });
-    }
-  },
   loader: moduleLoader,
   component: () => (
     <AppModuleLayout moduleName="POC Creator">
@@ -168,12 +145,6 @@ const pocNotFoundRoute = createRoute({
 const moneyAnalysisRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "$companyId/$departmentId/money-analysis",
-  beforeLoad: () => {
-    const { isAuthenticated } = useAuthStore.getState();
-    if (!isAuthenticated) {
-      throw redirect({ to: "/keycloak" });
-    }
-  },
   loader: moduleLoader,
   component: () => (
     <AppModuleLayout moduleName="Money Analysis">

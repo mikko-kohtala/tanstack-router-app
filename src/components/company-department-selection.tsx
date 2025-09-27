@@ -1,28 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  Briefcase,
-  Building2,
-  DollarSign,
-  FileText,
-  Search,
-  Users,
-} from "lucide-react";
+import { ArrowRight, Briefcase, Building2, DollarSign, FileText, Search, Users } from "lucide-react";
 import { useMemo, useState } from "react";
-import {
-  companies,
-  companyCategories,
-  getCompany,
-  getDepartment,
-} from "../data/companies";
+import { companies, companyCategories, getCompany, getDepartment } from "../data/companies";
 import { Button } from "./ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 const MAX_DEPARTMENTS_PREVIEW = 4;
 
@@ -91,12 +72,9 @@ export function CompanyDepartmentSelection() {
       <div className="min-h-[calc(100vh-4rem)] bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 py-8">
           <div className="mb-10 text-center">
-            <h1 className="mb-3 font-bold text-4xl text-gray-900">
-              Enterprise Analysis Platform
-            </h1>
+            <h1 className="mb-3 font-bold text-4xl text-gray-900">Enterprise Analysis Platform</h1>
             <p className="mx-auto max-w-2xl text-gray-600 text-lg">
-              Powerful tools for HR management, financial analysis, and proof of
-              concept creation
+              Powerful tools for HR management, financial analysis, and proof of concept creation
             </p>
           </div>
 
@@ -139,12 +117,8 @@ export function CompanyDepartmentSelection() {
             <Card className="border-gray-200">
               <CardContent className="py-12 text-center">
                 <Search className="mx-auto mb-4 h-12 w-12 text-gray-300" />
-                <h3 className="mb-2 font-semibold text-gray-900 text-xl">
-                  No companies found
-                </h3>
-                <p className="text-gray-600">
-                  Try adjusting your search or filters
-                </p>
+                <h3 className="mb-2 font-semibold text-gray-900 text-xl">No companies found</h3>
+                <p className="text-gray-600">Try adjusting your search or filters</p>
               </CardContent>
             </Card>
           ) : (
@@ -152,18 +126,13 @@ export function CompanyDepartmentSelection() {
               {filteredCompanies.map((company) => {
                 const category = companyCategories[company.category];
                 return (
-                  <Card
-                    className="overflow-hidden border-gray-200 transition-shadow hover:shadow-md"
-                    key={company.id}
-                  >
+                  <Card className="overflow-hidden border-gray-200 transition-shadow hover:shadow-md" key={company.id}>
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between">
                         <div className="flex items-center gap-3">
                           <span className="text-2xl">{category.icon}</span>
                           <div>
-                            <CardTitle className="text-lg">
-                              {company.name}
-                            </CardTitle>
+                            <CardTitle className="text-lg">{company.name}</CardTitle>
                             <CardDescription className="text-sm">
                               {company.description} • {company.size}
                             </CardDescription>
@@ -173,44 +142,32 @@ export function CompanyDepartmentSelection() {
                     </CardHeader>
                     <CardContent className="pt-0">
                       <div>
-                        <h4 className="mb-2 font-medium text-gray-700 text-sm">
-                          Departments
-                        </h4>
+                        <h4 className="mb-2 font-medium text-gray-700 text-sm">Departments</h4>
                         <div className="grid grid-cols-2 gap-2">
-                          {company.departments
-                            .slice(0, MAX_DEPARTMENTS_PREVIEW)
-                            .map((dept) => (
-                              <Link
-                                key={dept.id}
-                                params={{
-                                  companyId: company.id,
-                                  departmentId: dept.id,
-                                }}
-                                to="/$companyId/$departmentId"
-                              >
-                                <div className="rounded-lg border border-gray-200 bg-white p-2.5 transition-all hover:border-gray-300 hover:bg-gray-50">
-                                  <div className="flex items-center justify-between">
-                                    <div>
-                                      <span className="font-medium text-gray-900 text-sm">
-                                        {dept.name}
-                                      </span>
-                                      <div className="text-gray-500 text-xs">
-                                        {dept.memberCount} members
-                                      </div>
-                                    </div>
-                                    <ArrowRight className="h-3.5 w-3.5 text-gray-400" />
+                          {company.departments.slice(0, MAX_DEPARTMENTS_PREVIEW).map((dept) => (
+                            <Link
+                              key={dept.id}
+                              params={{
+                                companyId: company.id,
+                                departmentId: dept.id,
+                              }}
+                              to="/$companyId/$departmentId"
+                            >
+                              <div className="rounded-lg border border-gray-200 bg-white p-2.5 transition-all hover:border-gray-300 hover:bg-gray-50">
+                                <div className="flex items-center justify-between">
+                                  <div>
+                                    <span className="font-medium text-gray-900 text-sm">{dept.name}</span>
+                                    <div className="text-gray-500 text-xs">{dept.memberCount} members</div>
                                   </div>
+                                  <ArrowRight className="h-3.5 w-3.5 text-gray-400" />
                                 </div>
-                              </Link>
-                            ))}
+                              </div>
+                            </Link>
+                          ))}
                         </div>
-                        {company.departments.length >
-                          MAX_DEPARTMENTS_PREVIEW && (
+                        {company.departments.length > MAX_DEPARTMENTS_PREVIEW && (
                           <p className="mt-2 text-center text-gray-500 text-xs">
-                            +
-                            {company.departments.length -
-                              MAX_DEPARTMENTS_PREVIEW}{" "}
-                            more departments
+                            +{company.departments.length - MAX_DEPARTMENTS_PREVIEW} more departments
                           </p>
                         )}
                       </div>
@@ -226,16 +183,11 @@ export function CompanyDepartmentSelection() {
               <div className="flex items-center gap-4">
                 <Briefcase className="h-5 w-5 text-gray-600" />
                 <div className="flex-1">
-                  <h3 className="mb-1 font-medium text-gray-900">
-                    Direct URL Access
-                  </h3>
+                  <h3 className="mb-1 font-medium text-gray-900">Direct URL Access</h3>
                   <p className="text-gray-600 text-sm">
-                    Navigate directly using: /{"{company-id}"}/
-                    {"{department-id}"}
+                    Navigate directly using: /{"{company-id}"}/{"{department-id}"}
                   </p>
-                  <span className="text-gray-500 text-xs">
-                    Example: /techcorp/engineering
-                  </span>
+                  <span className="text-gray-500 text-xs">Example: /techcorp/engineering</span>
                 </div>
               </div>
             </CardContent>
@@ -252,30 +204,19 @@ export function CompanyDepartmentSelection() {
     <div className="min-h-[calc(100vh-4rem)] bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-8">
         <div className="mb-8 text-center">
-          <h1 className="mb-2 font-bold text-3xl text-gray-900">
-            {currentCompany?.name || companyId}
-          </h1>
-          <p className="text-gray-600 text-lg">
-            {currentDepartment?.name || departmentId} Department
-          </p>
+          <h1 className="mb-2 font-bold text-3xl text-gray-900">{currentCompany?.name || companyId}</h1>
+          <p className="text-gray-600 text-lg">{currentDepartment?.name || departmentId} Department</p>
           {currentDepartment?.description && (
-            <p className="mt-1 text-gray-500 text-sm">
-              {currentDepartment.description}
-            </p>
+            <p className="mt-1 text-gray-500 text-sm">{currentDepartment.description}</p>
           )}
-          <p className="mt-4 text-gray-600">
-            Select an application module to get started
-          </p>
+          <p className="mt-4 text-gray-600">Select an application module to get started</p>
         </div>
 
         <div className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-3">
           {modules.map((module) => {
             const Icon = module.icon;
             return (
-              <Card
-                className="border-gray-200 transition-shadow hover:shadow-md"
-                key={module.id}
-              >
+              <Card className="border-gray-200 transition-shadow hover:shadow-md" key={module.id}>
                 <CardHeader className="pb-4">
                   <div
                     className={`mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg ${module.bgAccent}`}
@@ -283,9 +224,7 @@ export function CompanyDepartmentSelection() {
                     <Icon className={`h-5 w-5 ${module.accent}`} />
                   </div>
                   <CardTitle className="text-xl">{module.name}</CardTitle>
-                  <CardDescription className="text-sm">
-                    {module.description}
-                  </CardDescription>
+                  <CardDescription className="text-sm">{module.description}</CardDescription>
                   <div className="mt-2 inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-gray-600 text-xs">
                     {module.stats}
                   </div>

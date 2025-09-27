@@ -1,11 +1,5 @@
 import { Button } from "../../../../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../../../../components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../../components/ui/card";
 
 const TX = [
   { date: "2025-09-01", desc: "Stripe Payout", amount: 85_000, type: "+" },
@@ -26,10 +20,7 @@ export default function MoneyTransactionsScreen() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
-            <input
-              className="rounded-md border px-3 py-2"
-              placeholder="Search description"
-            />
+            <input className="rounded-md border px-3 py-2" placeholder="Search description" />
             <input className="rounded-md border px-3 py-2" type="date" />
             <input className="rounded-md border px-3 py-2" type="date" />
             <div className="flex gap-2">
@@ -57,18 +48,11 @@ export default function MoneyTransactionsScreen() {
               </thead>
               <tbody>
                 {TX.map((t) => (
-                  <tr
-                    className="border-b last:border-b-0"
-                    key={`${t.date}-${t.desc}`}
-                  >
+                  <tr className="border-b last:border-b-0" key={`${t.date}-${t.desc}`}>
                     <td className="px-2 py-2">{t.date}</td>
                     <td className="px-2 py-2">{t.desc}</td>
                     <td className="px-2 py-2 text-right font-medium">
-                      <span
-                        className={
-                          t.type === "+" ? "text-green-600" : "text-red-600"
-                        }
-                      >
+                      <span className={t.type === "+" ? "text-green-600" : "text-red-600"}>
                         {t.type}
                         {Math.abs(t.amount).toLocaleString("en-US", {
                           style: "currency",

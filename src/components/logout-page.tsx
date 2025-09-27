@@ -3,13 +3,7 @@ import { LogOut } from "lucide-react";
 import { useEffect } from "react";
 import { useAuthStore } from "../stores/auth-store";
 import { Button } from "./ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 export function LogoutPage() {
   const logout = useAuthStore((state) => state.logout);
@@ -32,9 +26,7 @@ export function LogoutPage() {
             <LogOut className="h-8 w-8 text-gray-600" />
           </div>
           <CardTitle className="text-2xl">You've been logged out</CardTitle>
-          <CardDescription>
-            Your session has been terminated successfully
-          </CardDescription>
+          <CardDescription>Your session has been terminated successfully</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">

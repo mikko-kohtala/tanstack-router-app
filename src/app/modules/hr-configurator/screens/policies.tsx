@@ -1,11 +1,5 @@
 import { Button } from "../../../../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../../../../components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../../components/ui/card";
 
 const POLICIES = [
   { name: "Vacation & Leave", version: "1.3", updated: "2025-04-02" },
@@ -40,9 +34,7 @@ export default function HrPoliciesScreen() {
                   <tr className="border-b last:border-b-0" key={p.name}>
                     <td className="px-2 py-2 font-medium">{p.name}</td>
                     <td className="px-2 py-2">{p.version}</td>
-                    <td className="px-2 py-2 text-muted-foreground">
-                      {p.updated}
-                    </td>
+                    <td className="px-2 py-2 text-muted-foreground">{p.updated}</td>
                     <td className="px-2 py-2 text-right">
                       <div className="inline-flex gap-2">
                         <Button size="sm" variant="outline">

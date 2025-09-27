@@ -10,15 +10,11 @@ export default function ModuleNotFound({ moduleName }: { moduleName: string }) {
   return (
     <div className="space-y-3">
       <h2 className="font-semibold text-xl">Page not found</h2>
-      <p className="text-muted-foreground">
-        The requested page does not exist inside {moduleName}.
-      </p>
+      <p className="text-muted-foreground">The requested page does not exist inside {moduleName}.</p>
       <div className="space-x-2">
         {items.map((i) => (
           <Link key={i.href} to={i.href}>
-            <Button variant={i.href === basePath ? "default" : "outline"}>
-              {i.name}
-            </Button>
+            <Button variant={i.href === basePath ? "default" : "outline"}>{i.name}</Button>
           </Link>
         ))}
       </div>

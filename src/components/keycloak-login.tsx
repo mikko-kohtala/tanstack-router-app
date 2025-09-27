@@ -3,13 +3,7 @@ import { Shield } from "lucide-react";
 import { useState } from "react";
 import { useAuthStore } from "../stores/auth-store";
 import { Button } from "./ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 const KEYCLOAK_AUTH_DELAY_MS = 1500;
 
@@ -39,24 +33,16 @@ export function KeycloakLogin() {
             <Shield className="h-8 w-8 text-blue-600" />
           </div>
           <CardTitle className="text-2xl">Keycloak Authentication</CardTitle>
-          <CardDescription>
-            Sign in to access the Company Analysis Platform
-          </CardDescription>
+          <CardDescription>Sign in to access the Company Analysis Platform</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="rounded-lg border border-blue-200 bg-blue-50 p-4">
             <p className="text-center text-blue-700 text-sm">
-              This is a demo authentication flow. Click the button below to
-              simulate a Keycloak login.
+              This is a demo authentication flow. Click the button below to simulate a Keycloak login.
             </p>
           </div>
 
-          <Button
-            className="w-full"
-            disabled={isLoading}
-            onClick={handleLogin}
-            size="lg"
-          >
+          <Button className="w-full" disabled={isLoading} onClick={handleLogin} size="lg">
             {isLoading ? (
               <>
                 <span className="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent border-b-transparent" />
@@ -67,9 +53,7 @@ export function KeycloakLogin() {
             )}
           </Button>
 
-          <p className="text-center text-gray-500 text-xs">
-            Demo Mode • No credentials required
-          </p>
+          <p className="text-center text-gray-500 text-xs">Demo Mode • No credentials required</p>
         </CardContent>
       </Card>
     </div>

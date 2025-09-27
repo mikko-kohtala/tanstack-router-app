@@ -9,12 +9,7 @@ export type Company = {
   id: string;
   name: string;
   description: string;
-  category:
-    | "technology"
-    | "finance"
-    | "healthcare"
-    | "retail"
-    | "manufacturing";
+  category: "technology" | "finance" | "healthcare" | "retail" | "manufacturing";
   size: string;
   departments: Department[];
 };
@@ -484,18 +479,12 @@ export function getCompany(companyId: string): Company | undefined {
   return companies.find((c) => c.id === companyId);
 }
 
-export function getDepartment(
-  companyId: string,
-  departmentId: string
-): Department | undefined {
+export function getDepartment(companyId: string, departmentId: string): Department | undefined {
   const company = getCompany(companyId);
   return company?.departments.find((d) => d.id === departmentId);
 }
 
-export function isValidCompanyDepartment(
-  companyId: string,
-  departmentId: string
-): boolean {
+export function isValidCompanyDepartment(companyId: string, departmentId: string): boolean {
   const company = getCompany(companyId);
   if (!company) {
     return false;

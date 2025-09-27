@@ -1,11 +1,5 @@
 import { Button } from "../../../../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../../../../components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../../components/ui/card";
 
 const RPTS = [
   { name: "P&L Statement", range: "Q3 2025" },
@@ -21,18 +15,13 @@ export default function MoneyReportsScreen() {
       <Card>
         <CardHeader>
           <CardTitle>Generate Report</CardTitle>
-          <CardDescription>
-            Choose parameters to produce a report
-          </CardDescription>
+          <CardDescription>Choose parameters to produce a report</CardDescription>
         </CardHeader>
         <CardContent>
           <form className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <label className="space-y-1">
               <span className="font-medium text-sm">Report</span>
-              <select
-                className="w-full rounded-md border px-3 py-2"
-                defaultValue={RPTS[0].name}
-              >
+              <select className="w-full rounded-md border px-3 py-2" defaultValue={RPTS[0].name}>
                 {RPTS.map((r) => (
                   <option key={r.name} value={r.name}>
                     {r.name}
@@ -42,17 +31,11 @@ export default function MoneyReportsScreen() {
             </label>
             <label className="space-y-1">
               <span className="font-medium text-sm">From</span>
-              <input
-                className="w-full rounded-md border px-3 py-2"
-                type="date"
-              />
+              <input className="w-full rounded-md border px-3 py-2" type="date" />
             </label>
             <label className="space-y-1">
               <span className="font-medium text-sm">To</span>
-              <input
-                className="w-full rounded-md border px-3 py-2"
-                type="date"
-              />
+              <input className="w-full rounded-md border px-3 py-2" type="date" />
             </label>
             <div className="flex gap-2 md:col-span-3">
               <Button type="button">Generate</Button>
@@ -72,10 +55,7 @@ export default function MoneyReportsScreen() {
         <CardContent>
           <ul className="space-y-2 text-sm">
             {RPTS.map((r) => (
-              <li
-                className="flex items-center justify-between rounded border p-3"
-                key={r.name}
-              >
+              <li className="flex items-center justify-between rounded border p-3" key={r.name}>
                 <div>
                   <div className="font-medium">{r.name}</div>
                   <div className="text-muted-foreground">{r.range}</div>

@@ -43,38 +43,23 @@ export function RootLayout() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <Building2 className="mr-3 h-8 w-8 text-blue-600" />
-              <h1 className="font-semibold text-gray-900 text-xl">
-                Company Analysis
-              </h1>
+              <h1 className="font-semibold text-gray-900 text-xl">Company Analysis</h1>
             </div>
 
             <div className="flex items-center space-x-4">
               {companyId && departmentId && (
                 <>
                   <span className="text-gray-600 text-sm">
-                    <span className="font-medium">
-                      {companyNames[companyId] || companyId}
-                    </span>
+                    <span className="font-medium">{companyNames[companyId] || companyId}</span>
                     <span className="mx-2">•</span>
-                    <span className="font-medium">
-                      {departmentNames[departmentId] || departmentId}
-                    </span>
+                    <span className="font-medium">{departmentNames[departmentId] || departmentId}</span>
                   </span>
-                  <Button
-                    onClick={handleCompanyDepartmentChange}
-                    size="sm"
-                    variant="outline"
-                  >
+                  <Button onClick={handleCompanyDepartmentChange} size="sm" variant="outline">
                     Change Company/Department
                   </Button>
                 </>
               )}
-              <Button
-                className="gap-2"
-                onClick={handleLogout}
-                size="sm"
-                variant="ghost"
-              >
+              <Button className="gap-2" onClick={handleLogout} size="sm" variant="ghost">
                 <LogOut className="h-4 w-4" />
                 Logout
               </Button>

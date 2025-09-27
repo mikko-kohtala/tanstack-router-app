@@ -11,8 +11,7 @@ export function AppWrapper() {
   const location = useLocation();
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
-  const isAuthRoute =
-    location.pathname === "/keycloak" || location.pathname === "/logout";
+  const isAuthRoute = location.pathname === "/keycloak" || location.pathname === "/logout";
   const isFrontPage = location.pathname === "/";
   const shouldShowBoot = !isAuthRoute && isFrontPage && !isAuthenticated;
 

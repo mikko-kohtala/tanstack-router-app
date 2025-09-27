@@ -1,19 +1,6 @@
-import {
-  Award,
-  Calendar,
-  Clock,
-  Shield,
-  TrendingUp,
-  Users,
-} from "lucide-react";
+import { Award, Calendar, Clock, Shield, TrendingUp, Users } from "lucide-react";
 import { Button } from "../../../../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../../../../components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../../components/ui/card";
 
 export default function HrDashboard() {
   const stats = [
@@ -35,9 +22,7 @@ export default function HrDashboard() {
       {/* Header */}
       <div>
         <h2 className="font-bold text-2xl text-gray-900">HR Configurator</h2>
-        <p className="mt-1 text-gray-600">
-          Manage your organization's human resources settings and policies
-        </p>
+        <p className="mt-1 text-gray-600">Manage your organization's human resources settings and policies</p>
       </div>
 
       {/* Stats Grid */}
@@ -50,9 +35,7 @@ export default function HrDashboard() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-gray-600 text-sm">{stat.label}</p>
-                    <p className="mt-1 font-bold text-2xl text-gray-900">
-                      {stat.value}
-                    </p>
+                    <p className="mt-1 font-bold text-2xl text-gray-900">{stat.value}</p>
                     <p className="mt-1 text-green-600 text-sm">{stat.change}</p>
                   </div>
                   <div className="rounded-lg bg-blue-50 p-3">

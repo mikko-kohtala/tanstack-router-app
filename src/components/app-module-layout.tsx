@@ -10,10 +10,7 @@ type AppModuleLayoutProps = {
   children: ReactNode;
 };
 
-export function AppModuleLayout({
-  moduleName,
-  children,
-}: AppModuleLayoutProps) {
+export function AppModuleLayout({ moduleName, children }: AppModuleLayoutProps) {
   const location = useLocation();
   const routerState = useRouterState();
 
@@ -32,10 +29,7 @@ export function AppModuleLayout({
       {/* Sidebar */}
       <div className="w-64 border-gray-200 border-r bg-white">
         <div className="border-gray-200 border-b p-4">
-          <Link
-            params={{ companyId, departmentId }}
-            to="/$companyId/$departmentId"
-          >
+          <Link params={{ companyId, departmentId }} to="/$companyId/$departmentId">
             <Button className="w-full justify-start" size="sm" variant="ghost">
               <ChevronLeft className="mr-2 h-4 w-4" />
               Back to Modules
@@ -44,9 +38,7 @@ export function AppModuleLayout({
         </div>
 
         <div className="p-4">
-          <h3 className="mb-2 font-semibold text-gray-900 text-sm">
-            {moduleName}
-          </h3>
+          <h3 className="mb-2 font-semibold text-gray-900 text-sm">{moduleName}</h3>
           <nav className="space-y-1">
             {sidebarItems.map((item) => {
               const Icon = item.icon;
@@ -56,9 +48,7 @@ export function AppModuleLayout({
                 <Link
                   className={cn(
                     "flex items-center rounded-md px-3 py-2 font-medium text-sm transition-colors",
-                    isActive
-                      ? "bg-gray-100 text-gray-900"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                    isActive ? "bg-gray-100 text-gray-900" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                   )}
                   key={item.name}
                   to={item.href}

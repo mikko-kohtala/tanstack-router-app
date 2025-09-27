@@ -1,19 +1,6 @@
-import {
-  AlertCircle,
-  CheckCircle,
-  Clock,
-  FileText,
-  GitBranch,
-  Rocket,
-} from "lucide-react";
+import { AlertCircle, CheckCircle, Clock, FileText, GitBranch, Rocket } from "lucide-react";
 import { Button } from "../../../../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../../../../components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../../components/ui/card";
 
 export default function PocDashboard() {
   const projects = [
@@ -108,9 +95,7 @@ export default function PocDashboard() {
       <div className="flex items-start justify-between">
         <div>
           <h2 className="font-bold text-2xl text-gray-900">POC Creator</h2>
-          <p className="mt-1 text-gray-600">
-            Create and manage proof of concepts for new initiatives
-          </p>
+          <p className="mt-1 text-gray-600">Create and manage proof of concepts for new initiatives</p>
         </div>
         <Button className="bg-blue-600 hover:bg-blue-700">
           <Rocket className="mr-2 h-4 w-4" />
@@ -128,9 +113,7 @@ export default function PocDashboard() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-gray-600 text-sm">{stat.label}</p>
-                    <p className="mt-1 font-bold text-2xl text-gray-900">
-                      {stat.value}
-                    </p>
+                    <p className="mt-1 font-bold text-2xl text-gray-900">{stat.value}</p>
                   </div>
                   <div className={`${stat.bg} rounded-lg p-3`}>
                     <Icon className={`h-6 w-6 ${stat.color}`} />
@@ -146,9 +129,7 @@ export default function PocDashboard() {
       <Card>
         <CardHeader>
           <CardTitle>Active POC Projects</CardTitle>
-          <CardDescription>
-            Current proof of concept initiatives
-          </CardDescription>
+          <CardDescription>Current proof of concept initiatives</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -156,18 +137,12 @@ export default function PocDashboard() {
               <div className="rounded-lg border p-4" key={project.name}>
                 <div className="mb-3 flex items-start justify-between">
                   <div>
-                    <h4 className="font-medium text-gray-900">
-                      {project.name}
-                    </h4>
+                    <h4 className="font-medium text-gray-900">{project.name}</h4>
                     <div className="mt-1 flex items-center gap-3">
-                      <span
-                        className={`rounded-full px-2 py-1 text-xs ${getStatusColor(project.status)}`}
-                      >
+                      <span className={`rounded-full px-2 py-1 text-xs ${getStatusColor(project.status)}`}>
                         {project.status}
                       </span>
-                      <span
-                        className={`text-xs ${getPriorityColor(project.priority)}`}
-                      >
+                      <span className={`text-xs ${getPriorityColor(project.priority)}`}>
                         {project.priority} Priority
                       </span>
                     </div>
@@ -200,27 +175,21 @@ export default function PocDashboard() {
           <CardContent className="p-6">
             <GitBranch className="mb-3 h-8 w-8 text-blue-600" />
             <h3 className="font-semibold text-gray-900">Fork Template</h3>
-            <p className="mt-1 text-gray-600 text-sm">
-              Start from an existing POC template
-            </p>
+            <p className="mt-1 text-gray-600 text-sm">Start from an existing POC template</p>
           </CardContent>
         </Card>
         <Card className="cursor-pointer transition-shadow hover:shadow-md">
           <CardContent className="p-6">
             <FileText className="mb-3 h-8 w-8 text-green-600" />
             <h3 className="font-semibold text-gray-900">Documentation</h3>
-            <p className="mt-1 text-gray-600 text-sm">
-              POC creation guidelines and best practices
-            </p>
+            <p className="mt-1 text-gray-600 text-sm">POC creation guidelines and best practices</p>
           </CardContent>
         </Card>
         <Card className="cursor-pointer transition-shadow hover:shadow-md">
           <CardContent className="p-6">
             <AlertCircle className="mb-3 h-8 w-8 text-yellow-600" />
             <h3 className="font-semibold text-gray-900">Pending Reviews</h3>
-            <p className="mt-1 text-gray-600 text-sm">
-              5 POCs awaiting your review
-            </p>
+            <p className="mt-1 text-gray-600 text-sm">5 POCs awaiting your review</p>
           </CardContent>
         </Card>
       </div>

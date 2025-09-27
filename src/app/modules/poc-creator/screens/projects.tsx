@@ -1,11 +1,5 @@
 import { Button } from "../../../../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../../../../components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../../components/ui/card";
 
 const PROJECTS = [
   { name: "Realtime Chat", status: "In Progress", owner: "Alex", progress: 62 },
@@ -43,10 +37,7 @@ export default function PocProjectsScreen() {
                     <td className="px-2 py-2">{p.status}</td>
                     <td className="px-2 py-2">
                       <div className="h-2 w-40 rounded bg-gray-200">
-                        <div
-                          className="h-2 rounded bg-blue-600"
-                          style={{ width: `${p.progress}%` }}
-                        />
+                        <div className="h-2 rounded bg-blue-600" style={{ width: `${p.progress}%` }} />
                       </div>
                     </td>
                     <td className="px-2 py-2 text-right">

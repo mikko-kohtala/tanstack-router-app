@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../../../../components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../../components/ui/card";
 
 const CATS = [
   { name: "Engineering", limit: 850_000, used: 612_000 },
@@ -70,10 +64,7 @@ export default function MoneyBudgetsScreen() {
                     </div>
                   </div>
                   <div className="h-2 w-full rounded bg-gray-200">
-                    <div
-                      className={`h-2 rounded ${bar}`}
-                      style={{ width: `${pct}%` }}
-                    />
+                    <div className={`h-2 rounded ${bar}`} style={{ width: `${pct}%` }} />
                   </div>
                 </div>
               );

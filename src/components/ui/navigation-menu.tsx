@@ -24,10 +24,7 @@ function NavigationMenu({
 }) {
   return (
     <NavigationMenuRoot
-      className={cn(
-        "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center",
-        className
-      )}
+      className={cn("group/navigation-menu relative flex max-w-max flex-1 items-center justify-center", className)}
       data-slot="navigation-menu"
       data-viewport={viewport}
       {...props}
@@ -38,32 +35,19 @@ function NavigationMenu({
   );
 }
 
-function NavigationMenuList({
-  className,
-  ...props
-}: React.ComponentProps<typeof NavigationMenuListPrimitive>) {
+function NavigationMenuList({ className, ...props }: React.ComponentProps<typeof NavigationMenuListPrimitive>) {
   return (
     <NavigationMenuListPrimitive
-      className={cn(
-        "group flex flex-1 list-none items-center justify-center gap-1",
-        className
-      )}
+      className={cn("group flex flex-1 list-none items-center justify-center gap-1", className)}
       data-slot="navigation-menu-list"
       {...props}
     />
   );
 }
 
-function NavigationMenuItem({
-  className,
-  ...props
-}: React.ComponentProps<typeof NavigationMenuItemPrimitive>) {
+function NavigationMenuItem({ className, ...props }: React.ComponentProps<typeof NavigationMenuItemPrimitive>) {
   return (
-    <NavigationMenuItemPrimitive
-      className={cn("relative", className)}
-      data-slot="navigation-menu-item"
-      {...props}
-    />
+    <NavigationMenuItemPrimitive className={cn("relative", className)} data-slot="navigation-menu-item" {...props} />
   );
 }
 
@@ -91,10 +75,7 @@ function NavigationMenuTrigger({
   );
 }
 
-function NavigationMenuContent({
-  className,
-  ...props
-}: React.ComponentProps<typeof NavigationMenuContentPrimitive>) {
+function NavigationMenuContent({ className, ...props }: React.ComponentProps<typeof NavigationMenuContentPrimitive>) {
   return (
     <NavigationMenuContentPrimitive
       className={cn(
@@ -108,16 +89,9 @@ function NavigationMenuContent({
   );
 }
 
-function NavigationMenuViewport({
-  className,
-  ...props
-}: React.ComponentProps<typeof NavigationMenuViewportPrimitive>) {
+function NavigationMenuViewport({ className, ...props }: React.ComponentProps<typeof NavigationMenuViewportPrimitive>) {
   return (
-    <div
-      className={cn(
-        "absolute top-full left-0 isolate z-50 flex justify-center"
-      )}
-    >
+    <div className={cn("absolute top-full left-0 isolate z-50 flex justify-center")}>
       <NavigationMenuViewportPrimitive
         className={cn(
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-top-center overflow-hidden rounded-md border bg-popover text-popover-foreground shadow data-[state=closed]:animate-out data-[state=open]:animate-in md:w-[var(--radix-navigation-menu-viewport-width)]",
@@ -130,10 +104,7 @@ function NavigationMenuViewport({
   );
 }
 
-function NavigationMenuLink({
-  className,
-  ...props
-}: React.ComponentProps<typeof NavigationMenuLinkPrimitive>) {
+function NavigationMenuLink({ className, ...props }: React.ComponentProps<typeof NavigationMenuLinkPrimitive>) {
   return (
     <NavigationMenuLinkPrimitive
       className={cn(

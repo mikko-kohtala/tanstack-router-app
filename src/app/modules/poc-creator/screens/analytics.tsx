@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../../../../components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../../components/ui/card";
 
 const BASE_HEIGHT = 30;
 const HEIGHT_FACTOR = 13;
@@ -46,11 +40,7 @@ export default function PocAnalyticsScreen() {
           {/* Simple bar chart placeholder */}
           <div className="flex h-40 items-end gap-2">
             {BARS.map((b) => (
-              <div
-                className="w-4 rounded bg-blue-600/70"
-                key={b.id}
-                style={{ height: `${b.heightPct}%` }}
-              />
+              <div className="w-4 rounded bg-blue-600/70" key={b.id} style={{ height: `${b.heightPct}%` }} />
             ))}
           </div>
         </CardContent>
