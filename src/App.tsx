@@ -1,31 +1,32 @@
 import logo from './logo.svg'
-import './App.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="text-center space-y-6">
+        <img src={logo} className="h-40 mx-auto animate-spin-slow" alt="logo" />
+        <p className="text-lg text-muted-foreground">
+          Edit <code className="font-mono bg-muted px-1 py-0.5 rounded">src/App.tsx</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
-      </header>
+        <div className="flex gap-4 justify-center">
+          <a
+            className="text-primary hover:underline"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+          <a
+            className="text-primary hover:underline"
+            href="https://tanstack.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn TanStack
+          </a>
+        </div>
+      </div>
     </div>
   )
 }
