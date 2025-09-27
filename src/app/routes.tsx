@@ -37,12 +37,6 @@ export const rootRoute = createRootRoute({
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
-  beforeLoad: () => {
-    const { isAuthenticated } = useAuthStore.getState();
-    if (!isAuthenticated) {
-      throw redirect({ to: "/keycloak" });
-    }
-  },
   component: CompanyDepartmentSelection,
 });
 
