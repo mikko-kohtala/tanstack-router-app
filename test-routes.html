@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Company Analysis Routes</title>
+    <style>
+        body { font-family: system-ui; padding: 20px; }
+        .test { margin: 10px 0; }
+        .link { display: inline-block; padding: 8px 16px; background: #3b82f6; color: white; text-decoration: none; border-radius: 4px; }
+        .link:hover { background: #2563eb; }
+    </style>
+</head>
+<body>
+    <h1>Company Analysis App - Route Testing</h1>
+    <p>Click the links below to test each route:</p>
+
+    <div class="test">
+        <h3>1. Root Route</h3>
+        <a href="http://localhost:5173/" target="_blank" class="link">Open Root (/)</a>
+        <p>Should show: Welcome page with instructions</p>
+    </div>
+
+    <div class="test">
+        <h3>2. Company/Department Selection</h3>
+        <a href="http://localhost:5173/acme-corp/engineering" target="_blank" class="link">Open Selection Page</a>
+        <p>Should show: Three module cards (HR, POC, Money)</p>
+    </div>
+
+    <div class="test">
+        <h3>3. HR Configurator</h3>
+        <a href="http://localhost:5173/acme-corp/engineering/hr-configurator" target="_blank" class="link">Open HR Module</a>
+        <p>Should show: HR dashboard with stats and sidebar</p>
+    </div>
+
+    <div class="test">
+        <h3>4. POC Creator</h3>
+        <a href="http://localhost:5173/acme-corp/engineering/poc-creator" target="_blank" class="link">Open POC Module</a>
+        <p>Should show: POC projects dashboard with progress bars</p>
+    </div>
+
+    <div class="test">
+        <h3>5. Money Analysis</h3>
+        <a href="http://localhost:5173/acme-corp/engineering/money-analysis" target="_blank" class="link">Open Money Module</a>
+        <p>Should show: Financial metrics and budget analysis</p>
+    </div>
+</body>
+</html>
