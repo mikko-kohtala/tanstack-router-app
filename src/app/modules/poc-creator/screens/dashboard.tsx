@@ -1,4 +1,6 @@
 import { AlertCircle, CheckCircle, Clock, FileText, GitBranch, Rocket } from "lucide-react";
+import { Page } from "../../../../components/layouts/page";
+import { MetricDisplay, MetricGrid } from "../../../../components/patterns/metric-display";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../../components/ui/card";
 
@@ -35,29 +37,29 @@ export default function PocDashboard() {
       label: "Active POCs",
       value: "12",
       icon: Rocket,
-      color: "text-blue-600",
-      bg: "bg-blue-50",
+      iconColor: "text-blue-600",
+      iconBackground: "bg-blue-50",
     },
     {
       label: "Completed",
       value: "24",
       icon: CheckCircle,
-      color: "text-green-600",
-      bg: "bg-green-50",
+      iconColor: "text-green-600",
+      iconBackground: "bg-green-50",
     },
     {
       label: "In Review",
       value: "5",
       icon: Clock,
-      color: "text-yellow-600",
-      bg: "bg-yellow-50",
+      iconColor: "text-yellow-600",
+      iconBackground: "bg-yellow-50",
     },
     {
       label: "Templates",
       value: "8",
       icon: FileText,
-      color: "text-purple-600",
-      bg: "bg-purple-50",
+      iconColor: "text-purple-600",
+      iconBackground: "bg-purple-50",
     },
   ];
 
@@ -90,109 +92,94 @@ export default function PocDashboard() {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-start justify-between">
-        <div>
-          <h2 className="font-bold text-2xl text-gray-900">POC Creator</h2>
-          <p className="mt-1 text-gray-600">Create and manage proof of concepts for new initiatives</p>
+    <Page.Root>
+      <Page.Header>
+        <div className="flex items-start justify-between">
+          <div>
+            <Page.Title>POC Creator</Page.Title>
+            <Page.Description>Create and manage proof of concepts for new initiatives</Page.Description>
+          </div>
+          <Button className="bg-blue-600 hover:bg-blue-700">
+            <Rocket className="mr-2 h-4 w-4" />
+            Create New POC
+          </Button>
         </div>
-        <Button className="bg-blue-600 hover:bg-blue-700">
-          <Rocket className="mr-2 h-4 w-4" />
-          Create New POC
-        </Button>
-      </div>
+      </Page.Header>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-        {stats.map((stat) => {
-          const Icon = stat.icon;
-          return (
-            <Card key={stat.label}>
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-gray-600 text-sm">{stat.label}</p>
-                    <p className="mt-1 font-bold text-2xl text-gray-900">{stat.value}</p>
-                  </div>
-                  <div className={`${stat.bg} rounded-lg p-3`}>
-                    <Icon className={`h-6 w-6 ${stat.color}`} />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
+      <Page.Content>
+        <MetricGrid.Root>
+          {stats.map((stat) => (
+            <MetricDisplay key={stat.label} {...stat} />
+          ))}
+        </MetricGrid.Root>
 
-      {/* Active Projects */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Active POC Projects</CardTitle>
-          <CardDescription>Current proof of concept initiatives</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {projects.map((project) => (
-              <div className="rounded-lg border p-4" key={project.name}>
-                <div className="mb-3 flex items-start justify-between">
-                  <div>
-                    <h4 className="font-medium text-gray-900">{project.name}</h4>
-                    <div className="mt-1 flex items-center gap-3">
-                      <span className={`rounded-full px-2 py-1 text-xs ${getStatusColor(project.status)}`}>
-                        {project.status}
-                      </span>
-                      <span className={`text-xs ${getPriorityColor(project.priority)}`}>
-                        {project.priority} Priority
-                      </span>
+        <Card>
+          <CardHeader>
+            <CardTitle>Active POC Projects</CardTitle>
+            <CardDescription>Current proof of concept initiatives</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {projects.map((project) => (
+                <div className="rounded-lg border p-4" key={project.name}>
+                  <div className="mb-3 flex items-start justify-between">
+                    <div>
+                      <h4 className="font-medium text-gray-900">{project.name}</h4>
+                      <div className="mt-1 flex items-center gap-3">
+                        <span className={`rounded-full px-2 py-1 text-xs ${getStatusColor(project.status)}`}>
+                          {project.status}
+                        </span>
+                        <span className={`text-xs ${getPriorityColor(project.priority)}`}>
+                          {project.priority} Priority
+                        </span>
+                      </div>
+                    </div>
+                    <Button size="sm" variant="ghost">
+                      View Details
+                    </Button>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-600">Progress</span>
+                      <span className="font-medium">{project.progress}%</span>
+                    </div>
+                    <div className="h-2 w-full rounded-full bg-gray-200">
+                      <div
+                        className="h-2 rounded-full bg-blue-600 transition-all"
+                        style={{ width: `${project.progress}%` }}
+                      />
                     </div>
                   </div>
-                  <Button size="sm" variant="ghost">
-                    View Details
-                  </Button>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Progress</span>
-                    <span className="font-medium">{project.progress}%</span>
-                  </div>
-                  <div className="h-2 w-full rounded-full bg-gray-200">
-                    <div
-                      className="h-2 rounded-full bg-blue-600 transition-all"
-                      style={{ width: `${project.progress}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
-      {/* Quick Actions */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <Card className="cursor-pointer transition-shadow hover:shadow-md">
-          <CardContent className="p-6">
-            <GitBranch className="mb-3 h-8 w-8 text-blue-600" />
-            <h3 className="font-semibold text-gray-900">Fork Template</h3>
-            <p className="mt-1 text-gray-600 text-sm">Start from an existing POC template</p>
-          </CardContent>
-        </Card>
-        <Card className="cursor-pointer transition-shadow hover:shadow-md">
-          <CardContent className="p-6">
-            <FileText className="mb-3 h-8 w-8 text-green-600" />
-            <h3 className="font-semibold text-gray-900">Documentation</h3>
-            <p className="mt-1 text-gray-600 text-sm">POC creation guidelines and best practices</p>
-          </CardContent>
-        </Card>
-        <Card className="cursor-pointer transition-shadow hover:shadow-md">
-          <CardContent className="p-6">
-            <AlertCircle className="mb-3 h-8 w-8 text-yellow-600" />
-            <h3 className="font-semibold text-gray-900">Pending Reviews</h3>
-            <p className="mt-1 text-gray-600 text-sm">5 POCs awaiting your review</p>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <Card className="cursor-pointer transition-shadow hover:shadow-md">
+            <CardContent className="p-6">
+              <GitBranch className="mb-3 h-8 w-8 text-blue-600" />
+              <h3 className="font-semibold text-gray-900">Fork Template</h3>
+              <p className="mt-1 text-gray-600 text-sm">Start from an existing POC template</p>
+            </CardContent>
+          </Card>
+          <Card className="cursor-pointer transition-shadow hover:shadow-md">
+            <CardContent className="p-6">
+              <FileText className="mb-3 h-8 w-8 text-green-600" />
+              <h3 className="font-semibold text-gray-900">Documentation</h3>
+              <p className="mt-1 text-gray-600 text-sm">POC creation guidelines and best practices</p>
+            </CardContent>
+          </Card>
+          <Card className="cursor-pointer transition-shadow hover:shadow-md">
+            <CardContent className="p-6">
+              <AlertCircle className="mb-3 h-8 w-8 text-yellow-600" />
+              <h3 className="font-semibold text-gray-900">Pending Reviews</h3>
+              <p className="mt-1 text-gray-600 text-sm">5 POCs awaiting your review</p>
+            </CardContent>
+          </Card>
+        </div>
+      </Page.Content>
+    </Page.Root>
   );
 }
