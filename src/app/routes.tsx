@@ -1,8 +1,15 @@
-import { createRootRoute, createRoute, Outlet } from "@tanstack/react-router";
+import {
+  createRootRoute,
+  createRoute,
+  Outlet,
+  redirect,
+} from "@tanstack/react-router";
 import { AppModuleLayout } from "../components/app-module-layout";
 import { CompanyDepartmentSelection } from "../components/company-department-selection";
-import { RootLayout } from "../components/root-layout";
+import { KeycloakLogin } from "../components/keycloak-login";
+import { LogoutPage } from "../components/logout-page";
 import { companyDepartmentLoader, moduleLoader, rootLoader } from "../loaders";
+import { useAuthStore } from "../stores/auth-store";
 import ModuleNotFound from "./components/module-not-found";
 import HrDashboard from "./modules/hr-configurator/screens/dashboard";
 import HrPoliciesScreen from "./modules/hr-configurator/screens/policies";
@@ -18,23 +25,51 @@ import PocDashboard from "./modules/poc-creator/screens/dashboard";
 import PocProjectsScreen from "./modules/poc-creator/screens/projects";
 import PocTemplatesScreen from "./modules/poc-creator/screens/templates";
 
+import { AppWrapper } from "../components/app-wrapper";
+
 // Root route with top navigation and root loader
 export const rootRoute = createRootRoute({
   loader: rootLoader,
-  component: RootLayout,
+  component: AppWrapper,
 });
 
-// Index route - welcome page
+// Index route - welcome page with auth check
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
+  beforeLoad: () => {
+    const { isAuthenticated } = useAuthStore.getState();
+    if (!isAuthenticated) {
+      throw redirect({ to: "/keycloak" });
+    }
+  },
   component: CompanyDepartmentSelection,
+});
+
+// Keycloak authentication route
+const keycloakRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "keycloak",
+  component: KeycloakLogin,
+});
+
+// Logout route
+const logoutRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "logout",
+  component: LogoutPage,
 });
 
 // Company/Department route with validation loader
 const companyDepartmentRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "$companyId/$departmentId",
+  beforeLoad: () => {
+    const { isAuthenticated } = useAuthStore.getState();
+    if (!isAuthenticated) {
+      throw redirect({ to: "/keycloak" });
+    }
+  },
   loader: companyDepartmentLoader,
   component: CompanyDepartmentSelection,
 });
@@ -43,6 +78,12 @@ const companyDepartmentRoute = createRoute({
 const hrConfiguratorRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "$companyId/$departmentId/hr-configurator",
+  beforeLoad: () => {
+    const { isAuthenticated } = useAuthStore.getState();
+    if (!isAuthenticated) {
+      throw redirect({ to: "/keycloak" });
+    }
+  },
   loader: moduleLoader,
   component: () => (
     <AppModuleLayout moduleName="HR Configurator">
@@ -85,6 +126,12 @@ const hrNotFoundRoute = createRoute({
 const pocCreatorRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "$companyId/$departmentId/poc-creator",
+  beforeLoad: () => {
+    const { isAuthenticated } = useAuthStore.getState();
+    if (!isAuthenticated) {
+      throw redirect({ to: "/keycloak" });
+    }
+  },
   loader: moduleLoader,
   component: () => (
     <AppModuleLayout moduleName="POC Creator">
@@ -127,6 +174,12 @@ const pocNotFoundRoute = createRoute({
 const moneyAnalysisRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "$companyId/$departmentId/money-analysis",
+  beforeLoad: () => {
+    const { isAuthenticated } = useAuthStore.getState();
+    if (!isAuthenticated) {
+      throw redirect({ to: "/keycloak" });
+    }
+  },
   loader: moduleLoader,
   component: () => (
     <AppModuleLayout moduleName="Money Analysis">
@@ -168,6 +221,8 @@ const moneyNotFoundRoute = createRoute({
 // Build the route tree
 export const routeTree = rootRoute.addChildren([
   indexRoute,
+  keycloakRoute,
+  logoutRoute,
   companyDepartmentRoute,
   hrConfiguratorRoute.addChildren([
     hrConfiguratorIndexRoute,

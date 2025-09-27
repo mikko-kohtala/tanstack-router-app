@@ -1,5 +1,5 @@
 import { Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Building2 } from "lucide-react";
+import { Building2, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
 
 export function RootLayout() {
@@ -31,6 +31,10 @@ export function RootLayout() {
     navigate({ to: "/" });
   };
 
+  const handleLogout = () => {
+    navigate({ to: "/logout" });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Top Navigation Bar */}
@@ -44,26 +48,37 @@ export function RootLayout() {
               </h1>
             </div>
 
-            {companyId && departmentId && (
-              <div className="flex items-center space-x-4">
-                <span className="text-gray-600 text-sm">
-                  <span className="font-medium">
-                    {companyNames[companyId] || companyId}
+            <div className="flex items-center space-x-4">
+              {companyId && departmentId && (
+                <>
+                  <span className="text-gray-600 text-sm">
+                    <span className="font-medium">
+                      {companyNames[companyId] || companyId}
+                    </span>
+                    <span className="mx-2">•</span>
+                    <span className="font-medium">
+                      {departmentNames[departmentId] || departmentId}
+                    </span>
                   </span>
-                  <span className="mx-2">•</span>
-                  <span className="font-medium">
-                    {departmentNames[departmentId] || departmentId}
-                  </span>
-                </span>
-                <Button
-                  onClick={handleCompanyDepartmentChange}
-                  size="sm"
-                  variant="outline"
-                >
-                  Change Company/Department
-                </Button>
-              </div>
-            )}
+                  <Button
+                    onClick={handleCompanyDepartmentChange}
+                    size="sm"
+                    variant="outline"
+                  >
+                    Change Company/Department
+                  </Button>
+                </>
+              )}
+              <Button
+                className="gap-2"
+                onClick={handleLogout}
+                size="sm"
+                variant="ghost"
+              >
+                <LogOut className="h-4 w-4" />
+                Logout
+              </Button>
+            </div>
           </div>
         </div>
       </header>
