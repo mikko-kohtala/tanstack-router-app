@@ -5,10 +5,7 @@ import {
   Building2,
   DollarSign,
   FileText,
-  Globe,
   Search,
-  Shield,
-  TrendingUp,
   Users,
 } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -101,48 +98,6 @@ export function CompanyDepartmentSelection() {
               Powerful tools for HR management, financial analysis, and proof of
               concept creation
             </p>
-          </div>
-
-          <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-            <Card className="border-gray-200">
-              <CardContent className="p-6">
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
-                  <TrendingUp className="h-5 w-5 text-blue-600" />
-                </div>
-                <h3 className="mb-1 font-semibold text-gray-900">
-                  Real-time Analytics
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  Instant insights across all departments
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border-gray-200">
-              <CardContent className="p-6">
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-green-50">
-                  <Shield className="h-5 w-5 text-green-600" />
-                </div>
-                <h3 className="mb-1 font-semibold text-gray-900">
-                  Enterprise Security
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  Bank-level security for your data
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="border-gray-200">
-              <CardContent className="p-6">
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50">
-                  <Globe className="h-5 w-5 text-purple-600" />
-                </div>
-                <h3 className="mb-1 font-semibold text-gray-900">
-                  Global Scale
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  Supporting enterprises worldwide
-                </p>
-              </CardContent>
-            </Card>
           </div>
 
           <div className="mb-6 space-y-4">

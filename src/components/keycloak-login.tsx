@@ -32,7 +32,7 @@ export function KeycloakLogin() {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 to-slate-100">
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">

@@ -1,21 +1,7 @@
-import { useEffect, useState } from "react";
-
-const MAX_DOTS = 3;
-const DOTS_ANIMATION_INTERVAL_MS = 500;
-
 export function BootLoader() {
-  const [dots, setDots] = useState(1);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDots((prev) => (prev === MAX_DOTS ? 1 : prev + 1));
-    }, DOTS_ANIMATION_INTERVAL_MS);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 to-slate-100">
       <div className="text-center">
         <div className="mb-8">
           <div className="mb-6 flex justify-center">
@@ -37,7 +23,8 @@ export function BootLoader() {
           <h1 className="mb-2 font-bold text-2xl text-gray-800">
             Booting up application
           </h1>
-          <p className="text-gray-600">Routing to Keycloak{".".repeat(dots)}</p>
+          <p className="text-gray-600">Checking authentication status</p>
+          <p className="mt-1 text-gray-500 text-sm">Verifying client-side credentials</p>
         </div>
         <div className="mx-auto h-1 w-48 overflow-hidden rounded-full bg-gray-200">
           <div className="h-full animate-pulse bg-gradient-to-r from-blue-400 to-blue-600" />
