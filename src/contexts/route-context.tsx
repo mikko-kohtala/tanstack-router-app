@@ -10,7 +10,7 @@ type RouteContextValue = {
   moduleName?: string;
 };
 
-const RouteContext = createContext<RouteContextValue>({});
+const RouteContext = createContext<RouteContextValue | undefined>(undefined);
 
 export function useRouteContext() {
   const context = useContext(RouteContext);
