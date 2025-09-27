@@ -1,10 +1,10 @@
 import { createRootRoute, createRoute } from "@tanstack/react-router";
-import { AppModuleLayout } from "./components/AppModuleLayout";
-import { CompanyDepartmentSelection } from "./components/CompanyDepartmentSelection";
-import { HRConfigurator } from "./components/modules/HRConfigurator";
-import { MoneyAnalysis } from "./components/modules/MoneyAnalysis";
-import { POCCreator } from "./components/modules/POCCreator";
-import { RootLayout } from "./components/RootLayout";
+import { AppModuleLayout } from "./components/app-module-layout";
+import { CompanyDepartmentSelection } from "./components/company-department-selection";
+import { HRConfigurator } from "./components/modules/hr-configurator";
+import { MoneyAnalysis } from "./components/modules/money-analysis";
+import { POCCreator } from "./components/modules/poc-creator";
+import { RootLayout } from "./components/root-layout";
 import { companyDepartmentLoader, moduleLoader, rootLoader } from "./loaders";
 
 // Root route with top navigation and root loader
